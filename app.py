@@ -117,7 +117,7 @@ app.layout = html.Div(
 for graph in graphs:
     graph.callbacks()
 
-app.run_server(debug=False)
+app.run_server(host='127.0.0.1',port=3313,debug=False)
 
 
 # In[ ]:
