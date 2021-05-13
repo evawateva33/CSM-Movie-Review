@@ -3,7 +3,6 @@
 
 # In[4]:
 
-!pip install dash 
 
 import dash
 import dash_core_components as dcc
