@@ -2,6 +2,7 @@ sklearn
 pandas
 dash
 django
+dash_building_blocks
 gunicorn
 django-heroku
 Flask==1.1.2 
