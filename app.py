@@ -29,7 +29,7 @@ import pickle
 
 #ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
 
-ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", low_memory=False)
+ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv")
 #ex3 = ex3.append(ex2)
 
 ex3 = ex3[['movie', 'Datetime', 'Text', 'count_racist', 'count_problematic', 'count_sexist',
@@ -94,8 +94,8 @@ class Graph(dbb.Block):
                         hover_data=["Text"] , color = 'score')
             return  figgy, dif0,fig,figgs,figgz
 
-app = dash.Dash('Hello World')
-
+app = dash.Dash(__name__)
+server = app.server
 fig_names = ex3.movie.unique()
 options=[{'label': x, 'value': x} for x in fig_names]
 data = {
@@ -115,7 +115,7 @@ for graph in graphs:
     graph.callbacks()
     
 if __name__ == "main":
-    app.run_server(debug=True)
+    app.run_server(debug=False)
 
 
 
