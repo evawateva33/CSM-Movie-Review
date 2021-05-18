@@ -115,7 +115,7 @@ for graph in graphs:
     graph.callbacks()
     
 if __name__ == "main":
-    app.run_server(debug=False)
+    app.run_server(debug=True)
 
 
 
