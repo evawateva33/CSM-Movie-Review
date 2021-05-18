@@ -61,7 +61,7 @@ class Graph(dbb.Block):
         value = 'count_racist'),
         dcc.Graph(id=self.register('graph2')),
         dcc.Graph(id=self.register('graph')),
-        dcc.Graph(id=self.register('graph3')),
+        dcc.Graph(id=self.register('graph3'))
        
         ], style={'width': '500'})
 
@@ -70,7 +70,7 @@ class Graph(dbb.Block):
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
-             self.output('graph4', 'figure'),
+            
           
             [self.input('dropdown', 'value')],
      [self.input(component_id='dropdown2', component_property= 'value')]
