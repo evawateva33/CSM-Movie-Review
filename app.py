@@ -43,8 +43,7 @@ ex3['count_sexist']  = ex3['Text'].str.count("sexist")
 ex3['count_stereotypes']  = ex3['Text'].str.count("stereotype")
 ex3['count_whitewashing']  = ex3['Text'].str.count("whitewashing")
 ex3['count_stigma']  = ex3['Text'].str.count("stigma")
-ex3
-ex3 = ex3.dropna()
+
 class Graph(dbb.Block):
     def layout(self):
         return html.Div([
