@@ -94,8 +94,8 @@ class Graph(dbb.Block):
                         hover_data=["Text"] , color = 'score')
             return  figgy, dif0,fig,figgs,figgz
 
-app = dash.Dash(__name__)
-server = app.server
+app = dash.Dash('Hello World')
+
 fig_names = ex3.movie.unique()
 options=[{'label': x, 'value': x} for x in fig_names]
 data = {
