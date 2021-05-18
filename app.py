@@ -25,7 +25,7 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 import os
  #app name
-import pickle
+
 
 #ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
 
