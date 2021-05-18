@@ -62,7 +62,6 @@ class Graph(dbb.Block):
         dcc.Graph(id=self.register('graph2')),
         dcc.Graph(id=self.register('graph')),
         dcc.Graph(id=self.register('graph3')),
-        dcc.Graph(id=self.register('graph4')),
        
         ], style={'width': '500'})
 
@@ -84,13 +83,12 @@ class Graph(dbb.Block):
             dif0= px.scatter(ex3, x='Datetime',y = ex3['count_racist'],
                             color='movie' )
 
-            figgy = px.line(ex33, x='Datetime',y = ex33['count_racist'],
-                       hover_data=["Text"], )
+           
             figgs = px.line(ex33, x='Datetime',y = ex33['count_stereotypes'],
                         hover_data=["Text"] , color = 'score')
             figgz = px.line(ex33, x='Datetime',y = ex33['count_problematic'],
                         hover_data=["Text"] , color = 'score')
-            return  figgy, dif0,figgs,figgz
+            return   dif0,figgs,figgz
 
 app = dash.Dash(__name__)
 server = app.server
