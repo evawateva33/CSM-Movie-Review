@@ -18,12 +18,11 @@ import plotly.express as px
 import pickle 
 import pandas as pd  #Pandas for data pre-processing
 import joblib
-import pickle #Pickle for pickling (saving) the model 
+
 import flask
 import numpy as np
 from flask import Flask, request, jsonify, render_template
-import pickle
-import os
+
  #app name
 
 
@@ -113,9 +112,10 @@ app.layout = html.Div(
 
 for graph in graphs:
     graph.callbacks()
+
+if __name__ == '__main__':
+    app.run_server( port=3333)
     
-if __name__ == "main":
-    app.run_server(debug=False)
 
 
 
