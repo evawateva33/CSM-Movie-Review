@@ -84,7 +84,7 @@ class Graph(dbb.Block):
             # Creation of query method using parameters
             dif0= px.scatter(ex3, x='Datetime',y = ex3['count_racist'],
                             color='movie' )
-            fig= px.line(ex33, x='Datetime',y = ex33['count_stigma'],
+            fig= px.line(ex33, x='Datetime',y = ex33['count_racist'],
                            hover_data=["Text"] , color='score' )
             figgy = px.line(ex33, x='Datetime',y = ex33['count_racist'],
                        hover_data=["Text"], color= 'score')
