@@ -9,7 +9,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 from dash.dependencies import Input, Output
-# !pip install dash_building_blocks
+
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_building_blocks as dbb
@@ -19,8 +19,6 @@ import pickle
 import pandas as pd  #Pandas for data pre-processing
 import joblib
 import pickle #Pickle for pickling (saving) the model 
-
-# # some time later...
 import flask
 import numpy as np
 from flask import Flask, request, jsonify, render_template
@@ -115,11 +113,10 @@ app.layout = html.Div(
 
 for graph in graphs:
     graph.callbacks()
+    
 if __name__ == "main":
     app.run_server(debug=True)
 
-
-# In[ ]:
 
 
 
