@@ -41,7 +41,7 @@ ex3['count_sexist']  = ex3['Text'].str.count("sexist")
 ex3['count_stereotypes']  = ex3['Text'].str.count("stereotype")
 ex3['count_whitewashing']  = ex3['Text'].str.count("whitewashing")
 ex3['count_stigma']  = ex3['Text'].str.count("stigma")
-
+ex3 = ex3.dropna()
 class Graph(dbb.Block):
     def layout(self):
         return html.Div([
@@ -94,8 +94,8 @@ class Graph(dbb.Block):
                         hover_data=["Text"] , color = 'score')
             return  figgy, dif0,fig,figgs,figgz
 
-app = dash.Dash('hello world')
-
+app = dash.Dash(__name__)
+server = app.server
 fig_names = ex3.movie.unique()
 options=[{'label': x, 'value': x} for x in fig_names]
 data = {
@@ -114,8 +114,8 @@ app.layout = html.Div(
 for graph in graphs:
     graph.callbacks()
     
-
-app.run_server(debug=True)
+if __name__ == "main":
+    app.run_server(debug=False)
 
 
 
