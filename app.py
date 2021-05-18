@@ -63,7 +63,7 @@ class Graph(dbb.Block):
         dcc.Graph(id=self.register('graph')),
         dcc.Graph(id=self.register('graph3')),
         dcc.Graph(id=self.register('graph4')),
-        dcc.Graph(id=self.register('graph5'))
+       
         ], style={'width': '500'})
 
     def callbacks(self):
@@ -72,7 +72,7 @@ class Graph(dbb.Block):
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
              self.output('graph4', 'figure'),
-            self.output('graph5', 'figure'),
+          ,
             [self.input('dropdown', 'value')],
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
@@ -83,15 +83,14 @@ class Graph(dbb.Block):
             # Creation of query method using parameters
             dif0= px.scatter(ex3, x='Datetime',y = ex3['count_racist'],
                             color='movie' )
-            fig= px.line(ex33, x='Datetime',y = ex33['count_racist'],
-                           hover_data=["Text"] , color='score' )
+
             figgy = px.line(ex33, x='Datetime',y = ex33['count_racist'],
                        hover_data=["Text"], color= 'score')
             figgs = px.line(ex33, x='Datetime',y = ex33['count_stereotypes'],
                         hover_data=["Text"] , color = 'score')
             figgz = px.line(ex33, x='Datetime',y = ex33['count_problematic'],
                         hover_data=["Text"] , color = 'score')
-            return  figgy, dif0,fig,figgs,figgz
+            return  figgy, dif0,figgs,figgz
 
 app = dash.Dash(__name__)
 server = app.server
