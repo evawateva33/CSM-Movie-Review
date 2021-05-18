@@ -26,7 +26,7 @@ from flask import Flask, request, jsonify, render_template
  #app name
 
 
-ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
+ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv",lineterminator='\n')
 
 ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", lineterminator='\n')
 ex3 = ex3.append(ex2)
@@ -111,7 +111,7 @@ for graph in graphs:
     graph.callbacks()
 
 if __name__ == '__main__':
-    app.run_server( port=3313)
+    app.run_server( port=3333)
     
 
 
