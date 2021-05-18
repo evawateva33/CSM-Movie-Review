@@ -85,7 +85,7 @@ class Graph(dbb.Block):
                             color='movie' )
 
             figgy = px.line(ex33, x='Datetime',y = ex33['count_racist'],
-                       hover_data=["Text"], color= 'score')
+                       hover_data=["Text"], )
             figgs = px.line(ex33, x='Datetime',y = ex33['count_stereotypes'],
                         hover_data=["Text"] , color = 'score')
             figgz = px.line(ex33, x='Datetime',y = ex33['count_problematic'],
