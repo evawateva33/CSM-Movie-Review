@@ -24,20 +24,14 @@ import numpy as np
 from flask import Flask, request, jsonify, render_template
 
 
-ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv",lineterminator='\n')
-
+ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
 ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", lineterminator='\n')
 ex3 = ex3.append(ex2)
-
 ex3 = ex3[['movie', 'Datetime', 'Text', 'count_racist', 'count_problematic', 'count_sexist',
        'count_stereotypes', 'count_whitewashing', 'count_stigma', 'score']]
-
-ex3['count_racist']  = ex3['Text'].str.count("racist")
-ex3['count_problematic']  = ex3['Text'].str.count("problematic")
-ex3['count_sexist']  = ex3['Text'].str.count("sexist")
-ex3['count_stereotypes']  = ex3['Text'].str.count("stereotype")
-ex3['count_whitewashing']  = ex3['Text'].str.count("whitewashing")
-ex3['count_stigma']  = ex3['Text'].str.count("stigma")
+ex3['Text'] = ex3['Text'].astype(str)
+ex3['Text'] = ex3['Text'].str.wrap(30)
+ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
 ex3 = ex3.dropna()
 class Graph(dbb.Block):
     def layout(self):
@@ -45,10 +39,11 @@ class Graph(dbb.Block):
             dcc.Dropdown(
                 id=self.register('dropdown'),
                 options=self.data.options,
-                value=self.data.value
+                value="Breakfast at Tiffany's",
+                placeholder='Select specific movie to search'
             ),
 
-        dcc.Input(id=self.register("input1"), type="text", placeholder=""),
+        dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
         #dcc.Input(id=self.register("input2"), type="text", placeholder="", debounce=True),
 
      dcc.Dropdown( id =self.register('dropdown2'),
@@ -60,7 +55,7 @@ class Graph(dbb.Block):
             {'label': 'count_stigma', 'value':'count_stigma'},
              {'label': 'count_stereotypes', 'value':'count_stereotypes'},
             ],
-        value = 'count_racist'),
+        value = 'count_racist', placeholder="Select a word to see frequency of mentions"),
         dcc.Graph(id=self.register('graph2')),
         dcc.Graph(id=self.register('graph')),
         dcc.Graph(id=self.register('graph3'))
@@ -79,15 +74,12 @@ class Graph(dbb.Block):
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
         def update_graph(input1,selected_dropdown_value , selected_dropdown_value2):
-            ex3['Text'] = ex3['Text'].astype(str)
-            ex3['Text'] = ex3['Text'].str.wrap(30)
-            ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
-            ex3['custom'] = ex3['Text'].str.count(str(input1))
+            ex3['count_custom_word'] = ex3['Text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
             dif0= px.scatter(ex3, x='Datetime', y = ex3['{}'.format(selected_dropdown_value2)],
                             color='movie')
-            figgs = px.line(ex33, x='Datetime',y = ex33['custom'],
+            figgs = px.line(ex33, x='Datetime',y = ex33['count_custom_word'],
                         hover_data=["Text"])
             figgz = px.line(ex33, x='Datetime', y = ex33['{}'.format(selected_dropdown_value2)],
                         hover_data=["Text"] , color = 'score')
@@ -114,4 +106,4 @@ for graph in graphs:
     graph.callbacks()
 
 if __name__ == '__main__':
-    app.run_server( port=3371)
+    app.run_server( port=3339)
