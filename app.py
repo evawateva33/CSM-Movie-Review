@@ -72,14 +72,13 @@ class Graph(dbb.Block):
     def callbacks(self):
         @self.app.callback(
 
-            self.input("input1", "value"),
-            self.input("input2", "value"),
+
             self.output("output", "children"),
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
-
-
+            self.input("input1", "value"),
+            self.input("input2", "value"),
             [self.input('dropdown', 'value')],
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
