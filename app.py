@@ -15,7 +15,7 @@ import dash_html_components as html
 import dash_building_blocks as dbb
 import plotly.express as px
 
-import pickle 
+import pickle
 import pandas as pd  #Pandas for data pre-processing
 import joblib
 
@@ -49,6 +49,11 @@ class Graph(dbb.Block):
                 options=self.data.options,
                 value=self.data.value
             ),
+             html.I("Try typing in input 1 & 2, and observe how debounce is impacting the callbacks. Press Enter and/or Tab key in Input 2 to cancel the delay"),
+        html.Br(),
+        dcc.Input(id="input1", type="text", placeholder=""),
+        dcc.Input(id="input2", type="text", placeholder="", debounce=True),
+        html.Div(id="output"),
      dcc.Dropdown( id =self.register('dropdown2'),
         options = [
             {'label':'count_racist', 'value':'count_racist' },
@@ -62,16 +67,19 @@ class Graph(dbb.Block):
         dcc.Graph(id=self.register('graph2')),
         dcc.Graph(id=self.register('graph')),
         dcc.Graph(id=self.register('graph3'))
-       
+
         ], style={'width': '500'})
 
     def callbacks(self):
         @self.app.callback(
+            self.output("output", "children"),
+            self.input("input1", "value"),
+            self.input("input2", "value"),
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
-            
-          
+
+
             [self.input('dropdown', 'value')],
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
@@ -83,7 +91,7 @@ class Graph(dbb.Block):
             dif0= px.scatter(ex3, x='Datetime',y = ex3['count_racist'],
                             color='movie' )
 
-           
+
             figgs = px.line(ex33, x='Datetime',y = ex33['count_stereotypes'],
                         hover_data=["Text"] , color = 'score')
             figgz = px.line(ex33, x='Datetime',y = ex33['count_problematic'],
@@ -112,9 +120,3 @@ for graph in graphs:
 
 if __name__ == '__main__':
     app.run_server( port=3333)
-    
-
-
-
-
-
