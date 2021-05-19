@@ -71,9 +71,10 @@ class Graph(dbb.Block):
 
     def callbacks(self):
         @self.app.callback(
-            self.output("output", "children"),
+
             self.input("input1", "value"),
             self.input("input2", "value"),
+            self.output("output", "children"),
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
