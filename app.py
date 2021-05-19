@@ -49,11 +49,10 @@ class Graph(dbb.Block):
                 options=self.data.options,
                 value=self.data.value
             ),
-             html.I("Try typing in input 1 & 2, and observe how debounce is impacting the callbacks. Press Enter and/or Tab key in Input 2 to cancel the delay"),
-        html.Br(),
-        dcc.Input(id="input1", type="text", placeholder=""),
-        dcc.Input(id="input2", type="text", placeholder="", debounce=True),
-        html.Div(id="output"),
+
+        dcc.Input(id=self.register("input1"), type="text", placeholder=""),
+        dcc.Input(id=self.register("input2"), type="text", placeholder="", debounce=True),
+        html.Div(id=self.register("output")),
      dcc.Dropdown( id =self.register('dropdown2'),
         options = [
             {'label':'count_racist', 'value':'count_racist' },
