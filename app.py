@@ -72,7 +72,7 @@ class Graph(dbb.Block):
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
         def update_graph(input1,selected_dropdown_value , selected_dropdown_value2):
-            ex3['count_custom_word'] = ex3['Text'].str.count(str(input1))
+            #ex3['count_custom_word'] = ex3['Text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
             dif0= px.scatter(ex3, x='Datetime', y = ex3['{}'.format(selected_dropdown_value2)],
