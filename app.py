@@ -40,8 +40,7 @@ class Graph(dbb.Block):
             dcc.Dropdown(
                 id=self.register('dropdown'),
                 options=self.data.options,
-                value="Breakfast at Tiffany's",
-                placeholder='Select specific movie to search'
+                value=self.data.value,
             ),
 
         #dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
@@ -56,7 +55,7 @@ class Graph(dbb.Block):
             {'label': 'count_stigma', 'value':'count_stigma'},
              {'label': 'count_stereotypes', 'value':'count_stereotypes'},
             ],
-        value = 'count_racist', placeholder="Select a word to see frequency of mentions"),
+        value = 'count_racist'),
         dcc.Graph(id=self.register('graph2')),
         dcc.Graph(id=self.register('graph')),
         dcc.Graph(id=self.register('graph3'))
@@ -68,8 +67,7 @@ class Graph(dbb.Block):
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
-            #self.input("input1", "value"),
-            #self.input("input2", "value"),
+
             [self.input('dropdown', 'value')],
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
