@@ -25,7 +25,7 @@ from flask import Flask, request, jsonify, render_template
 
 
 
-ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
+ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv",lineterminator='\n')
 ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", lineterminator='\n')
 ex3 = ex3.append(ex2)
 ex3 = ex3[['movie', 'Datetime', 'Text', 'count_racist', 'count_problematic', 'count_sexist',
