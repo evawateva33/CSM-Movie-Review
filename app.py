@@ -63,8 +63,7 @@ class Graph(dbb.Block):
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
-        #    self.input("input1", "value"),
-            #self.input("input2", "value"),
+
             [self.input('dropdown', 'value')],
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
@@ -78,7 +77,7 @@ class Graph(dbb.Block):
                         hover_data=["Text"])
             figgz = px.line(ex33, x='Datetime', y = ex33['{}'.format(selected_dropdown_value2)],
                         hover_data=["Text"] , color = 'score')
-            return   figgs,dif0,figgz
+            return   figgz,dif0,figgs
 
 app = dash.Dash(__name__)
 server = app.server
