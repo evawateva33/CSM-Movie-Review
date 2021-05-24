@@ -9,19 +9,14 @@ import dash_html_components as html
 import dash_building_blocks as dbb
 import plotly.express as px
 
-import pickle 
+import pickle
 import pandas as pd  #Pandas for data pre-processing
 import joblib
-import pickle #Pickle for pickling (saving) the model 
 
-# # some time later...
 import flask
 import numpy as np
 from flask import Flask, request, jsonify, render_template
-import pickle
-import os
- #app name
-import pickle
+
 
 
 ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
@@ -45,7 +40,7 @@ class Graph(dbb.Block):
 
         dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
         #dcc.Input(id=self.register("input2"), type="text", placeholder="", debounce=True),
-      
+
      dcc.Dropdown( id =self.register('dropdown2'),
         options = [
             {'label':'count_racist', 'value':'count_racist' },
