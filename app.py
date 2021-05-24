@@ -24,7 +24,7 @@ import os
 import pickle
 
 
-ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv", , lineterminator='\n')
+ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
 ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", lineterminator='\n')
 ex3 = ex3.append(ex2)
 ex3 = ex3[['movie', 'Datetime', 'Text', 'count_racist', 'count_problematic', 'count_sexist',
@@ -73,7 +73,7 @@ class Graph(dbb.Block):
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
         def update_graph(input1,selected_dropdown_value , selected_dropdown_value2):
-            ex3['count '+'{}'.format(input1)] = ex3['Text'].str.count(input1)
+            ex3['count '+'{}'.format(input1)] = ex3['Text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
             dif0= px.scatter(ex3, x='Datetime', y = ex3['count_racist'],
