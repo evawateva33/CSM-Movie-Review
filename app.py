@@ -76,7 +76,7 @@ class Graph(dbb.Block):
             ex3['count '+'{}'.format(input1)] = ex3['Text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
-            dif0= px.scatter(ex3, x='Datetime', y = ex3['count_racist'],
+            dif0= px.scatter(ex3, x='Datetime', y = ex3['count '+'{}'.format(input1)],
                             color='movie')
             figgs = px.line(ex33, x='Datetime',y = ex33['count_stereotypes'],
                         hover_data=["Text"])
