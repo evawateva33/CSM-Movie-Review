@@ -26,7 +26,7 @@ ex3 = ex3[['movie', 'Datetime', 'Text', 'count_racist', 'count_problematic', 'co
 # ex3['Text'] = ex3['Text'].astype(str)
 # ex3['Text'] = ex3['Text'].str.wrap(30)
 # ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
-
+ex3 = ex3.dropna()
 class Graph(dbb.Block):
     def layout(self):
         return html.Div([
@@ -99,5 +99,5 @@ for graph in graphs:
     graph.callbacks()
 
 if __name__ == '__main__':
-    app.run_server( port=3333)
+    app.run_server( port=3233)
 
