@@ -39,7 +39,7 @@ class Graph(dbb.Block):
             ),
 
 
-        dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
+        dcc.Input(id=self.register("input1"), type="text"),
         #dcc.Input(id=self.register("input2"), type="text", placeholder="", debounce=True),
 
      dcc.Dropdown( id =self.register('dropdown2'),
@@ -51,7 +51,7 @@ class Graph(dbb.Block):
             {'label': 'count_stigma', 'value':'count_stigma'},
              {'label': 'count_stereotypes', 'value':'count_stereotypes'},
             ],
-        value = 'count_racist', placeholder="Select a word to see frequency of mentions"),
+        value = 'count_racist'),
         dcc.Graph(id=self.register('graph2')),
         dcc.Graph(id=self.register('graph')),
         dcc.Graph(id=self.register('graph3'))
