@@ -34,7 +34,6 @@ class Graph(dbb.Block):
             dcc.Dropdown(
                 id=self.register('dropdown'),
                 options=self.data.options,
-                value="Breakfast at Tiffany's",
                 placeholder='Select specific movie to search',
                 value=self.data.value,
             ),
