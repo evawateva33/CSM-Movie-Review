@@ -78,7 +78,7 @@ class Graph(dbb.Block):
             # Creation of query method using parameters
             dif0= px.scatter(ex3, x='Datetime', y = ex3['{}'.format(selected_dropdown_value2)],
                             color='movie')
-            figgs = px.line(ex33, x='Datetime',y = ex33['count '+'{}'.format(input1)],
+            figgs = px.line(ex33, x='Datetime',y = ex33['count_stereotypes'],
                         hover_data=["Text"])
             figgz = px.line(ex33, x='Datetime', y = ex33['{}'.format(selected_dropdown_value2)],
                         hover_data=["Text"] , color = 'score')
