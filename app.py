@@ -52,7 +52,7 @@ class Graph(dbb.Block):
             {'label': 'count_stigma', 'value':'count_stigma'},
              {'label': 'count_stereotypes', 'value':'count_stereotypes'},
             ],
-        value = 'count_racist', placeholder="Select a word to see frequency of mentions"),
+        value = 'count_racist'),
         dcc.Graph(id=self.register('graph2')),
         dcc.Graph(id=self.register('graph')),
         dcc.Graph(id=self.register('graph3'))
@@ -82,7 +82,7 @@ class Graph(dbb.Block):
                         hover_data=["Text"])
             figgz = px.line(ex33, x='Datetime', y = ex33['{}'.format(selected_dropdown_value2)],
                         hover_data=["Text"] , color = 'score')
-            return   figgs,dif0,figgz
+            return   figgz,dif0,figgs
 
 app = dash.Dash(__name__)
 server = app.server
@@ -105,4 +105,4 @@ for graph in graphs:
     graph.callbacks()
 
 if __name__ == '__main__':
-    app.run_server( port=3339)
+    app.run_server( port=3333)
