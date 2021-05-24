@@ -35,10 +35,10 @@ class Graph(dbb.Block):
                 id=self.register('dropdown'),
                 options=self.data.options,
                 value="Breakfast at Tiffany's",
-                placeholder='Select specific movie to search'
+                placeholder='Select specific movie to search',
                 value=self.data.value,
             ),
-            ),
+
 
         dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
         #dcc.Input(id=self.register("input2"), type="text", placeholder="", debounce=True),
