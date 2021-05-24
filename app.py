@@ -29,9 +29,6 @@ ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", lineterminator='\n')
 ex3 = ex3.append(ex2)
 ex3 = ex3[['movie', 'Datetime', 'Text', 'count_racist', 'count_problematic', 'count_sexist',
        'count_stereotypes', 'count_whitewashing', 'count_stigma', 'score']]
-ex3['Text'] = ex3['Text'].astype(str)
-ex3['Text'] = ex3['Text'].str.wrap(30)
-ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
 ex3 = ex3.dropna()
 class Graph(dbb.Block):
     def layout(self):
@@ -77,6 +74,9 @@ class Graph(dbb.Block):
             ex3['count_custom_word'] = ex3['Text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
+            ex3['Text'] = ex3['Text'].astype(str)
+            ex3['Text'] = ex3['Text'].str.wrap(30)
+            ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
             dif0= px.scatter(ex3, x='Datetime', y = ex3['{}'.format(selected_dropdown_value2)],
                             color='movie')
             figgs = px.line(ex33, x='Datetime',y = ex33['count_custom_word'],
