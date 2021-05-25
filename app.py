@@ -29,9 +29,7 @@ ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", lineterminator='\n')
 ex3 = ex3.append(ex2)
 ex3 = ex3[['movie', 'Datetime', 'Text', 'count_racist', 'count_problematic', 'count_sexist',
        'count_stereotypes', 'count_whitewashing', 'count_stigma', 'score']]
-# ex3['Text'] = ex3['Text'].astype(str)
-# ex3['Text'] = ex3['Text'].str.wrap(30)
-# ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
+
 ex3 = ex3.dropna()
 class Graph(dbb.Block):
     def layout(self):
@@ -73,6 +71,9 @@ class Graph(dbb.Block):
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
         def update_graph(input1,selected_dropdown_value , selected_dropdown_value2):
+            ex3['Text'] = ex3['Text'].astype(str)
+            ex3['Text'] = ex3['Text'].str.wrap(30)
+            ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
             ex3['count '+'{}'.format(input1)] = ex3['Text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
