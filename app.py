@@ -24,8 +24,8 @@ import os
 import pickle
 
 
-ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
-ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", lineterminator='\n')
+ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
+ex2 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", lineterminator='\n')
 ex3 = ex3.append(ex2)
 ex3 = ex3[['movie', 'Datetime', 'Text', 'count_racist', 'count_problematic', 'count_sexist',
        'count_stereotypes', 'count_whitewashing', 'count_stigma', 'score']]
@@ -71,15 +71,15 @@ class Graph(dbb.Block):
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
         def update_graph(input1,selected_dropdown_value , selected_dropdown_value2):
-            ex3['Text'] = ex3['Text'].astype(str)
-            ex3['Text'] = ex3['Text'].str.wrap(30)
-            ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
+            # ex3['Text'] = ex3['Text'].astype(str)
+            # ex3['Text'] = ex3['Text'].str.wrap(30)
+            # ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
             ex3['count '+'{}'.format(input1)] = ex3['Text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
-            dif0= px.scatter(ex3, x='Datetime', y = ex3['count '+'{}'.format(input1)],
+            dif0= px.scatter(ex3, x='Datetime', y = ex3['count_racist'],
                             color='movie')
-            figgs = px.line(ex33, x='Datetime',y = ex33['count_stereotypes'],
+            figgs = px.line(ex33, x='Datetime',y = ex33['count '+'{}'.format(input1)],
                         hover_data=["Text"])
             figgz = px.line(ex33, x='Datetime', y = ex33['{}'.format(selected_dropdown_value2)],
                         hover_data=["Text"] , color = 'score')
