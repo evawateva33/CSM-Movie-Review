@@ -103,4 +103,4 @@ for graph in graphs:
     graph.callbacks()
 
 if __name__ == '__main__':
-    app.run_server( port=3213)
+    app.run_server( debug=True)
