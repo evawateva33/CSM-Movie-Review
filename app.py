@@ -12,16 +12,13 @@ import plotly.express as px
 import pickle
 import pandas as pd  #Pandas for data pre-processing
 import joblib
-import pickle #Pickle for pickling (saving) the model
 
-# # some time later...
 import flask
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
 import os
- #app name
-import pickle
+
 
 
 #ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
@@ -41,7 +38,7 @@ class Graph(dbb.Block):
                 placeholder='Select specific movie to search'
             ),
 
-        dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
+        #dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
         #dcc.Input(id=self.register("input2"), type="text", placeholder="", debounce=True),
 
      dcc.Dropdown( id =self.register('dropdown2'),
@@ -65,21 +62,21 @@ class Graph(dbb.Block):
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
-            self.input("input1", "value"),
+            #self.input("input1", "value"),
             #self.input("input2", "value"),
             [self.input('dropdown', 'value')],
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
-        def update_graph(input1,selected_dropdown_value , selected_dropdown_value2):
+        def update_graph(selected_dropdown_value , selected_dropdown_value2):
             # ex3['Text'] = ex3['Text'].astype(str)
             # ex3['Text'] = ex3['Text'].str.wrap(30)
             # ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
-            ex3['count '+'{}'.format(input1)] = ex3['Text'].str.count(str(input1))
+            #ex3['count '+'{}'.format(input1)] = ex3['Text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
             dif0= px.scatter(ex3, x='Datetime', y = ex3['count_racist'],
                             color='movie')
-            figgs = px.line(ex33, x='Datetime',y = ex33['count '+'{}'.format(input1)],
+            figgs = px.line(ex33, x='Datetime',y = ex33['count_problematic'],
                         hover_data=["Text"])
             figgz = px.line(ex33, x='Datetime', y = ex33['{}'.format(selected_dropdown_value2)],
                         hover_data=["Text"] , color = 'score')
@@ -106,4 +103,4 @@ for graph in graphs:
     graph.callbacks()
 
 if __name__ == '__main__':
-    app.run_server( port=3313)
+    app.run_server( port=3213)
