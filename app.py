@@ -40,7 +40,7 @@ query = f"""SELECT *
             # return results as a dataframe
 ex3 = pd.read_sql(query, con)
 
-
+ex3 = ex3.to_dict('ex3')
 
 ex3 = ex3[['Movie', 'Datetime', 'Text', 'Count_racist', 'Count_problematic', 'Count_sexist',
        'Count_stereotypes', 'Count_whitewashing', 'Count_stigma', 'Score']]
