@@ -48,9 +48,9 @@ ex3 = pd.DataFrame.from_dict(ex3)
 ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
 
 ex3 = ex3.dropna()
-ex3['Text'] = ex3['Text'].astype(str)
-ex3['Text'] = ex3['Text'].str.wrap(30)
-ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
+ex3['text'] = ex3['text'].astype(str)
+ex3['text'] = ex3['text'].str.wrap(30)
+ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
 class Graph(dbb.Block):
     def layout(self):
         return html.Div([
