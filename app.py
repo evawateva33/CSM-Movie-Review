@@ -18,12 +18,30 @@ import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
 import os
+import psycopg2
 
 
+DATABASE_URL = os.environ['DATABASE_URL']
 
 #ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
-ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", lineterminator='\n')
+#ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", lineterminator='\n')
 #ex3 = ex3.append(ex2)
+
+con = psycopg2.connect(DATABASE_URL)
+
+            #  create a new cursor
+cur = con.cursor()
+
+            # query
+query = f"""SELECT *
+                        FROM evalalala
+                            """
+
+            # return results as a dataframe
+ex3 = pd.read_sql(query, con)
+
+
+
 ex3 = ex3[['movie', 'Datetime', 'Text', 'count_racist', 'count_problematic', 'count_sexist',
        'count_stereotypes', 'count_whitewashing', 'count_stigma', 'score']]
 
