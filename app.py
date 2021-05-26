@@ -92,11 +92,11 @@ class Graph(dbb.Block):
             #ex3['count '+'{}'.format(input1)] = ex3['Text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
-            dif0= px.scatter(ex3, x='Datetime', y = ex3['count_racist'],
+            dif0= px.scatter(ex3, x='datetime', y = ex3['count_racist'],
                             color='movie')
-            figgs = px.line(ex33, x='Datetime',y = ex33['count_problematic'],
+            figgs = px.line(ex33, x='datetime',y = ex33['count_problematic'],
                         hover_data=["Text"])
-            figgz = px.line(ex33, x='Datetime', y = ex33['{}'.format(selected_dropdown_value2)],
+            figgz = px.line(ex33, x='datetime', y = ex33['{}'.format(selected_dropdown_value2)],
                         hover_data=["Text"] , color = 'score')
             return   figgz,dif0,figgs
 
