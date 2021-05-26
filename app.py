@@ -48,6 +48,9 @@ ex3 = pd.DataFrame.from_dict(ex3)
 ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
 
 ex3 = ex3.dropna()
+ex3['Text'] = ex3['Text'].astype(str)
+ex3['Text'] = ex3['Text'].str.wrap(30)
+ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
 class Graph(dbb.Block):
     def layout(self):
         return html.Div([
@@ -88,9 +91,7 @@ class Graph(dbb.Block):
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
         def update_graph(selected_dropdown_value , selected_dropdown_value2):
-            ex3['Text'] = ex3['Text'].astype(str)
-            ex3['Text'] = ex3['Text'].str.wrap(30)
-            ex3['Text'] = ex3['Text'].apply(lambda x: x.replace('\n', '<br>'))
+
             #ex3['count '+'{}'.format(input1)] = ex3['Text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
