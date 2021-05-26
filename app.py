@@ -19,6 +19,7 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 import os
 import psycopg2
+import datetime
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -43,7 +44,8 @@ ex3 = pd.read_sql(query, con)
 ex3 = ex3.to_dict()
 
 ex3 = pd.DataFrame.from_dict(ex3)
-ex3['datetime'] =  pd.to_datetime(ex3['datetime'], format='%Y-%m-%d %H:%M:%S%z')
+
+ex3['datetime'] =  pd.to_datetime(ex3['datetime'], format='%Y-%m-%d %H:%M:%S%f')
 
 ex3 = ex3.dropna()
 class Graph(dbb.Block):
