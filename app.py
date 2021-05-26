@@ -46,6 +46,14 @@ ex3 = ex3.to_dict()
 ex3 = pd.DataFrame.from_dict(ex3)
 
 ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
+ex3['count_yellowface'] = ex3['text'].str.count('yellowface')
+ex3['count_blackface'] = ex3['text'].str.count('blackface')
+ex3['count_bias'] = ex3['text'].str.count('bias')
+ex3['count_anti-Semitic'] = ex3['text'].str.count('anti-Semitic')
+ex3['count_discrimination'] = ex3['text'].str.count('discrimination')
+ex3['count_bigot'] = ex3['text'].str.count('bigot')
+ex3['count_offensive'] = ex3['text'].str.count('offensive')
+
 
 ex3 = ex3.dropna()
 ex3['text'] = ex3['text'].astype(str)
@@ -61,7 +69,7 @@ class Graph(dbb.Block):
                 placeholder='Select specific movie to search'
             ),
 
-        dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
+        #dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
         #dcc.Input(id=self.register("input2"), type="text", placeholder="", debounce=True),
 
      dcc.Dropdown( id =self.register('dropdown2'),
@@ -71,7 +79,17 @@ class Graph(dbb.Block):
             {'label': 'count_problematic', 'value':'count_problematic'},
             {'label': 'count_whitewashing', 'value':'count_whitewashing'},
             {'label': 'count_stigma', 'value':'count_stigma'},
-             {'label': 'count_stereotypes', 'value':'count_stereotypes'},
+            {'label': 'count_stereotypes', 'value':'count_stereotypes'},
+            {'label': 'count_yellowface', 'value':'count_yellowface'},
+            {'label': 'count_blackface', 'value':'count_blackface'},
+            {'label': 'count_bias', 'value':'count_bias'},
+            {'label': 'count_bigot', 'value':'count_bigot'},
+            {'label': 'count_discrimination', 'value':'count_discrimination'},
+            {'label': 'count_anti-Semitic', 'value':'count_anti-Semitic'},
+            {'label': 'count_offensive', 'value':'count_offensive'},
+
+
+
             ],
         value = 'count_racist', placeholder="Select a word to see frequency of mentions"),
         dcc.Graph(id=self.register('graph2')),
@@ -85,14 +103,14 @@ class Graph(dbb.Block):
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
-            self.input("input1", "value"),
+            #self.input("input1", "value"),
             #self.input("input2", "value"),
             [self.input('dropdown', 'value')],
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
-        def update_graph(input1, selected_dropdown_value , selected_dropdown_value2):
+        def update_graph( selected_dropdown_value , selected_dropdown_value2):
 
-            ex3['count '+'{}'.format(input1)] = ex3['text'].str.count(str(input1))
+            #ex3['count '+'{}'.format(input1)] = ex3['text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
             dif0= px.scatter(ex3, x='datetime', y = ex3['count_racist'],
