@@ -92,7 +92,7 @@ class Graph(dbb.Block):
         )
         def update_graph(input1, selected_dropdown_value , selected_dropdown_value2):
 
-            ex3['count '+'{}'.format(input1)] = ex3['Text'].str.count(str(input1))
+            ex3['count '+'{}'.format(input1)] = ex3['text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
             dif0= px.scatter(ex3, x='datetime', y = ex3['count_racist'],
