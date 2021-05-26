@@ -95,9 +95,9 @@ class Graph(dbb.Block):
             dif0= px.scatter(ex3, x='datetime', y = ex3['count_racist'],
                             color='movie')
             figgs = px.line(ex33, x='datetime',y = ex33['count_problematic'],
-                        hover_data=["Text"])
+                        hover_data=["text"])
             figgz = px.line(ex33, x='datetime', y = ex33['{}'.format(selected_dropdown_value2)],
-                        hover_data=["Text"] , color = 'score')
+                        hover_data=["text"] , color = 'score')
             return   figgz,dif0,figgs
 
 app = dash.Dash(__name__)
