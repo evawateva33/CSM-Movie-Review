@@ -42,8 +42,8 @@ ex3 = pd.read_sql(query, con)
 
 
 
-ex3 = ex3[['movie', 'Datetime', 'Text', 'count_racist', 'count_problematic', 'count_sexist',
-       'count_stereotypes', 'count_whitewashing', 'count_stigma', 'score']]
+ex3 = ex3[['Movie', 'Datetime', 'Text', 'Count_racist', 'Count_problematic', 'Count_sexist',
+       'Count_stereotypes', 'Count_whitewashing', 'Count_stigma', 'Score']]
 
 ex3 = ex3.dropna()
 class Graph(dbb.Block):
