@@ -40,8 +40,9 @@ query = f"""SELECT *
             # return results as a dataframe
 ex3 = pd.read_sql(query, con)
 
-ex3 = ex3.to_dict('records')
+ex3 = ex3.to_dict()
 
+ex3 = pd.DataFrame.from_dict(ex3)
 
 
 ex3 = ex3.dropna()
