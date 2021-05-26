@@ -45,7 +45,7 @@ ex3 = ex3.to_dict()
 
 ex3 = pd.DataFrame.from_dict(ex3)
 
-ex3['datetime'] =  pd.to_datetime(ex3['datetime'], format='%Y-%m-%d %H:%M:%S %z')
+ex3['datetime'] =  pd.to_datetime(ex3['datetime'], format='%Y-%m-%d %H:%M:%S %Z')
 
 ex3 = ex3.dropna()
 class Graph(dbb.Block):
