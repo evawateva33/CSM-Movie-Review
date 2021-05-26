@@ -43,7 +43,7 @@ ex3 = pd.read_sql(query, con)
 ex3 = ex3.to_dict()
 
 ex3 = pd.DataFrame.from_dict(ex3)
-
+ex3['datetime'] =  pd.to_datetime(ex3['datetime'], format='%Y-%m-%d')
 
 ex3 = ex3.dropna()
 class Graph(dbb.Block):
