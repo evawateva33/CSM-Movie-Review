@@ -58,8 +58,9 @@ ex3['count_offensive'] = ex3['text'].str.count('offensive')
 
 ex3 = ex3.dropna()
 ex3 = ex3.reset_index()
-ex1=pd.pivot_table(ex3, index=['movie'],values=['count_racist','count_sexist', 'count_problematic',
-                                              'count_whitewashing','count_stigma'],aggfunc=np.sum)
+ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
+                                                    'count_sexist', 'count_problematic',
+                                                    'count_stigma', 'count_stereotypes'].sum()
 
 ex3['text'] = ex3['text'].astype(str)
 ex3['text'] = ex3['text'].str.wrap(30)
@@ -148,14 +149,14 @@ class Graph(dbb.Block):
             'backgroundColor': '#B20000',
             'color': 'white',
         }
-#         ,{
-#             'if': {
-#                 'column_id': 'count_stereotypes',
-#                 'filter_query': '{count_stereotypes} gt 10'
-# },
-#             'backgroundColor': '#B20000',
-#             'color': 'white',
-#         }
+        ,{
+            'if': {
+                'column_id': 'count_stereotypes',
+                'filter_query': '{count_stereotypes} gt 10'
+},
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        }
     ],
                 columns= [{"name": i, "id": i} for i in ex1.columns],
                 data=ex1.to_dict("records"),
