@@ -55,8 +55,13 @@ ex3['count_discrimination'] = ex3['text'].str.count('discrimination')
 ex3['count_bigot'] = ex3['text'].str.count('bigot')
 ex3['count_offensive'] = ex3['text'].str.count('offensive')
 
-
 ex3 = ex3.dropna()
+ex1=pd.pivot_table(ex3, index=['movie'],values=['count_racist','count_sexist','count_stereotypes', 'count_problematic',
+                                              'count_whitewashing',
+                                             'count_stigma',
+                                               ],
+                   aggfunc=np.sum)
+ex1 = ex1.reset_index()
 ex3['text'] = ex3['text'].astype(str)
 ex3['text'] = ex3['text'].str.wrap(30)
 ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
@@ -93,6 +98,70 @@ class Graph(dbb.Block):
 
             ],
         value = 'count_racist', placeholder="Select a word to see frequency of mentions"),
+      dash_table.DataTable(
+                id=self.register('table'),
+                  style_cell_conditional=[
+        {'if': {'column_id': 'title'},
+         'width': '200px'},
+        {'if': {'column_id': 'post'},
+         'width': '670px'
+         ,'height':'auto'}
+    ]
+    ,style_cell={
+        'overflow': 'hidden',
+        'textOverflow': 'ellipsis',
+        'maxWidth': '50px'
+    }
+    , style_table={
+        'maxHeight': '700px'
+        ,'overflowY': 'scroll'
+    },
+   style_data_conditional=[
+        {
+            'if': {
+                'column_id': 'count_racist',
+                'filter_query': '{count_racist} gt 10'
+            },
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        }
+        ,{
+            'if': {
+                'column_id': 'count_problematic',
+                'filter_query': '{count_problematic} gt 10'
+            },
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        }
+        ,{
+            'if': {
+                'column_id': 'count_sexist',
+                'filter_query': '{count_sexist} gt 10'
+},
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        }
+        ,{
+            'if': {
+                'column_id': 'count_stigma',
+                'filter_query': '{count_stigma} gt 10'
+},
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        }
+        ,{
+            'if': {
+                'column_id': 'count_stereotypes',
+                'filter_query': '{count_stereotypes} gt 10'
+},
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        }
+    ],
+                columns= [{"name": i, "id": i} for i in ex1.columns],
+                data=ex1.to_dict("records"),
+                                    ),
+
         dcc.Graph(id=self.register('graph2')),
         dcc.Graph(id=self.register('graph')),
         dcc.Graph(id=self.register('graph3'))
@@ -101,6 +170,7 @@ class Graph(dbb.Block):
 
     def callbacks(self):
         @self.app.callback(
+            self.output('table', 'data'),
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
@@ -120,7 +190,7 @@ class Graph(dbb.Block):
                         hover_data=["text"])
             figgz = px.line(ex33, x='datetime', y = ex33['{}'.format(selected_dropdown_value2)],
                         hover_data=["text"] , color = 'score')
-            return   figgz,dif0,figgs
+            return   ex1.to_dict("records"),figgz,dif0,figgs
 
 app = dash.Dash(__name__)
 server = app.server
