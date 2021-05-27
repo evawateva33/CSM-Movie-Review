@@ -35,7 +35,7 @@ cur = con.cursor()
 
 # query the entire csv from postgres database
 query = f"""SELECT *
-            FROM eva
+            FROM eva_database
             """
 
 # return results as a dataframe
