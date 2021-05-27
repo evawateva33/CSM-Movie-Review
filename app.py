@@ -56,12 +56,10 @@ ex3['count_bigot'] = ex3['text'].str.count('bigot')
 ex3['count_offensive'] = ex3['text'].str.count('offensive')
 
 ex3 = ex3.dropna()
+ex3 = ex3.reset_index()
 ex1=pd.pivot_table(ex3, index=['movie'],values=['count_racist','count_sexist','count_stereotypes', 'count_problematic',
-                                              'count_whitewashing',
-                                             'count_stigma',
-                                               ],
-                   aggfunc=np.sum)
-ex1 = ex1.reset_index()
+                                              'count_whitewashing','count_stigma'],aggfunc=np.sum)
+
 ex3['text'] = ex3['text'].astype(str)
 ex3['text'] = ex3['text'].str.wrap(30)
 ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
