@@ -57,7 +57,7 @@ ex3['count_offensive'] = ex3['text'].str.count('offensive')
 
 ex3 = ex3.dropna()
 ex3 = ex3.reset_index()
-ex1=pd.pivot_table(ex3, index=['movie'],values=['count_racist','count_sexist','count_stereotypes', 'count_problematic',
+ex1=pd.pivot_table(ex3, index=['movie'],values=['count_racist','count_sexist', 'count_problematic',
                                               'count_whitewashing','count_stigma'],aggfunc=np.sum)
 
 ex3['text'] = ex3['text'].astype(str)
@@ -111,7 +111,7 @@ class Graph(dbb.Block):
         'maxWidth': '50px'
     }
     , style_table={
-        'maxHeight': '700px'
+        'maxHeight': '300px'
         ,'overflowY': 'scroll'
     },
    style_data_conditional=[
@@ -147,14 +147,14 @@ class Graph(dbb.Block):
             'backgroundColor': '#B20000',
             'color': 'white',
         }
-        ,{
-            'if': {
-                'column_id': 'count_stereotypes',
-                'filter_query': '{count_stereotypes} gt 10'
-},
-            'backgroundColor': '#B20000',
-            'color': 'white',
-        }
+#         ,{
+#             'if': {
+#                 'column_id': 'count_stereotypes',
+#                 'filter_query': '{count_stereotypes} gt 10'
+# },
+#             'backgroundColor': '#B20000',
+#             'color': 'white',
+#         }
     ],
                 columns= [{"name": i, "id": i} for i in ex1.columns],
                 data=ex1.to_dict("records"),
