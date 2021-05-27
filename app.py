@@ -30,19 +30,20 @@ DATABASE_URL = os.environ['DATABASE_URL']
 
 con = psycopg2.connect(DATABASE_URL)
 
-            #  create a new cursor
+#  create a new cursor
 cur = con.cursor()
 
-            # query
+# query the entire csv from postgres database
 query = f"""SELECT *
-                        FROM evalalala
-                            """
+            FROM eva
+            """
 
-            # return results as a dataframe
+# return results as a dataframe
 ex3 = pd.read_sql(query, con)
 
 ex3 = ex3.to_dict()
 
+#convert to df
 ex3 = pd.DataFrame.from_dict(ex3)
 
 ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
