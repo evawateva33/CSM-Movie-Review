@@ -67,7 +67,8 @@ ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
 ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                                     'count_sexist', 'count_problematic',
                                                     'count_stigma', ].sum())
-
+                                                    
+ex1 = ex1.set_index('movie')
 ex3['text'] = ex3['text'].astype(str)
 ex3['text'] = ex3['text'].str.wrap(30)
 ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
@@ -155,7 +156,7 @@ class Graph(dbb.Block):
             'backgroundColor': '#B20000',
             'color': 'white',
         }
-        
+
     ],
                 columns= [{"name": i, "id": i} for i in ex1.columns],
                 data=ex1.to_dict("records"),
