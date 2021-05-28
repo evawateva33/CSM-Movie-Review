@@ -25,16 +25,16 @@ import dash_table
 
 
 
-from flask_caching import Cache
+# from flask_caching import Cache
 
 
-cache = Cache(app.server, config={
-    'CACHE_TYPE': 'filesystem',
-    'CACHE_DIR': 'cache'
-})
-app.config.supress_callback_exceptions = True
-@cache.memoize(timeout=timeout)
-timeout = 20
+# cache = Cache(app.server, config={
+#     'CACHE_TYPE': 'filesystem',
+#     'CACHE_DIR': 'cache'
+# })
+# app.config.supress_callback_exceptions = True
+# @cache.memoize(timeout=timeout)
+# timeout = 20
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -312,6 +312,6 @@ app.layout = html.Div(
 
 for graph in graphs:
     graph.callbacks()
-@cache.memoize(timeout=timeout)
+# @cache.memoize(timeout=timeout)
 if __name__ == '__main__':
     app.run_server( debug=True)
