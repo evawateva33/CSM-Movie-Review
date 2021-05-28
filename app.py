@@ -69,9 +69,9 @@ ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                                     'count_stigma', ].sum())
 
 ex1 = ex1.reset_index()
-ex3['text'] = ex3['text'].astype(str)
-ex3['text'] = ex3['text'].str.wrap(30)
-ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
+# ex3['text'] = ex3['text'].astype(str)
+# ex3['text'] = ex3['text'].str.wrap(30)
+# ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
 class Graph(dbb.Block):
     def layout(self):
         return html.Div([
