@@ -58,20 +58,20 @@ ex3['count_offensive'] = ex3['text'].str.count('offensive')
 
 ex3 = ex3.dropna()
 ex3 = ex3.reset_index()
-ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
-ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
-ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
-#ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
-ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
+# ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
+# ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
+# ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
+# #ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
+# ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
 
 ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                                     'count_sexist', 'count_problematic',
                                                     'count_stigma', ].sum())
 
 ex1 = ex1.reset_index()
-# ex3['text'] = ex3['text'].astype(str)
-# ex3['text'] = ex3['text'].str.wrap(30)
-# ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
+ex3['text'] = ex3['text'].astype(str)
+ex3['text'] = ex3['text'].str.wrap(30)
+ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
 class Graph(dbb.Block):
     def layout(self):
         return html.Div([
