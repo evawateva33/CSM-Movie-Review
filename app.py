@@ -59,14 +59,9 @@ ex3['count_offensive'] = ex3['text'].str.count('offensive')
 ex3 = ex3.dropna()
 ex3 = ex3.reset_index()
 ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
-ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
-ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
-#ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
-ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
 
-ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
-                                                    'count_sexist', 'count_problematic',
-                                                    'count_stigma', ].sum())
+
+ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist' ].sum())
 
 ex1 = ex1.reset_index()
 ex3['text'] = ex3['text'].astype(str)
@@ -129,30 +124,6 @@ class Graph(dbb.Block):
                 'column_id': 'count_racist',
                 'filter_query': '{count_racist} gt 10'
             },
-            'backgroundColor': '#B20000',
-            'color': 'white',
-        }
-        ,{
-            'if': {
-                'column_id': 'count_problematic',
-                'filter_query': '{count_problematic} gt 10'
-            },
-            'backgroundColor': '#B20000',
-            'color': 'white',
-        }
-        ,{
-            'if': {
-                'column_id': 'count_sexist',
-                'filter_query': '{count_sexist} gt 10'
-},
-            'backgroundColor': '#B20000',
-            'color': 'white',
-        }
-        ,{
-            'if': {
-                'column_id': 'count_stigma',
-                'filter_query': '{count_stigma} gt 10'
-},
             'backgroundColor': '#B20000',
             'color': 'white',
         }
