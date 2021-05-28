@@ -61,12 +61,12 @@ ex3 = ex3.reset_index()
 ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
 ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
 ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
-ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
+#ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
 ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
 
 ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                                     'count_sexist', 'count_problematic',
-                                                    'count_stigma', 'count_stereotypes'].sum())
+                                                    'count_stigma', ].sum())
 
 ex3['text'] = ex3['text'].astype(str)
 ex3['text'] = ex3['text'].str.wrap(30)
@@ -155,14 +155,7 @@ class Graph(dbb.Block):
             'backgroundColor': '#B20000',
             'color': 'white',
         }
-        ,{
-            'if': {
-                'column_id': 'count_stereotypes',
-                'filter_query': '{count_stereotypes} gt 10'
-},
-            'backgroundColor': '#B20000',
-            'color': 'white',
-        }
+        
     ],
                 columns= [{"name": i, "id": i} for i in ex1.columns],
                 data=ex1.to_dict("records"),
