@@ -83,7 +83,7 @@ class Graph(dbb.Block):
     html.Div(
         className="app-header",
         children=[
-            html.Div('Welcome to the Common Sennse Media Twitter Review Tool  <br>  IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R" and then Refresh the Page, REPEAT if needed',
+            html.H1('Welcome to the Common Sennse Media Twitter Review Tool  <br>  IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R" and then Refresh the Page, REPEAT if needed',
              className="app-header--title")
         ]
     )
