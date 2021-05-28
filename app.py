@@ -69,7 +69,8 @@ ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                              'count_stigma',
                                              'count_yellowface' ,
                                             'count_blackface',
-                                              'count_discrimination'].sum())
+                                              'count_discrimination',
+                                              'count_caricature'].sum())
 
 ex1 = ex1.reset_index()
 ex3['text'] = ex3['text'].astype(str)
@@ -89,7 +90,7 @@ class Graph(dbb.Block):
             html.Div('''
                 First: Click the Dropdown Menus Below and Choose a Movie to Search Twitter Press TAB BUTTON to Submit Movie Choice/n
                 Second [OPTIONAL]: Input a unique word you wish to search for that was mentioned in tweets PRESS TAB to Submit /n
-                Third: Click the Second Dropdown Menu and Choose a Word that You Wish to Search for PRESS TAB to Submit 
+                Third: Click the Second Dropdown Menu and Choose a Word that You Wish to Search for PRESS TAB to Submit
             ''')
         ])
     )
@@ -120,6 +121,7 @@ class Graph(dbb.Block):
             {'label': 'count_discrimination', 'value':'count_discrimination'},
             {'label': 'count_anti-Semitic', 'value':'count_anti-Semitic'},
             {'label': 'count_offensive', 'value':'count_offensive'},
+            {'label': 'count_caricature', 'value':'count_caricature'},
 
 
 
@@ -200,7 +202,16 @@ class Graph(dbb.Block):
 },
             'backgroundColor': '#B20000',
             'color': 'white',
-        }
+        },
+         {
+              'if': {
+                  'column_id': 'count_caricature',
+                  'filter_query': '{count_caricature} gt 10'
+  },
+              'backgroundColor': '#B20000',
+              'color': 'white',
+          }
+
     ],
                 columns= [{"name": i, "id": i} for i in ex1.columns],
                 data=ex1.to_dict("records"),
