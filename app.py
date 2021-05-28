@@ -25,10 +25,6 @@ import dash_table
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
-#ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT.csv")
-#ex3 = pd.read_csv("ALL_TIME_TWEET_SENTIMENT_pt2.csv", lineterminator='\n')
-#ex3 = ex3.append(ex2)
-
 con = psycopg2.connect(DATABASE_URL)
 
 #  create a new cursor
@@ -211,14 +207,16 @@ class Graph(dbb.Block):
 
             ex3['count '+'{}'.format(input1)] = ex3['text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
-            # Creation of query method using parameters
+
             dif0= px.scatter(ex3, x='datetime', y = ex3['{}'.format(selected_dropdown_value2)],
-                            color='movie')
-            figgs = px.line(ex33, x='datetime',y = ex33['count_racist'],
-                        hover_data=["text"])
+                            color='movie', title = 'All Movie Tweets Mentions with ' +'{}'.format(selected_dropdown_value2) )
+            figgs = px.line(ex33, x='datetime',y = ex33['count '+'{}'.format(input1)],
+                        hover_data=["text"],
+                        title= '{}'.format(selected_dropdown_value)+ "Movie Tweet Mentions with"+'count '+'{}'.format(input1))
             figgz = px.line(ex33, x='datetime', y = ex33['{}'.format(selected_dropdown_value2)],
-                        hover_data=["text"] , color = 'score')
-            return   ex1.to_dict("records"),figgz,dif0,figgs
+                        hover_data=["text"] , color = 'score',
+                        title= '{}'.format(selected_dropdown_value)+ "Movie Tweet Mentions with"+'{}'.format(selected_dropdown_value2))
+            return   ex1.to_dict("records"), figgz, dif0, figgs
 
 app = dash.Dash(__name__)
 server = app.server
