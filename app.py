@@ -97,7 +97,7 @@ class Graph(dbb.Block):
             ''')
         ])
     ),
-        html.Div([
+
             dcc.Dropdown(
                 id=self.register('dropdown'),
                 options=self.data.options,
