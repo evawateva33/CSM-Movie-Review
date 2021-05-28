@@ -26,8 +26,8 @@ import dash_table
 DATABASE_URL = os.environ['DATABASE_URL']
 
 colors = {
-    'background': '#111111',
-    'text': '#7FDBFF'
+    'background': '#7FFFDB',
+    'text': '#111111'
 }
 
 con = psycopg2.connect(DATABASE_URL)
@@ -84,8 +84,8 @@ ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
 
 class Graph(dbb.Block):
     def layout(self):
-        return html.Div([ 
-    html.Div(
+        return html.Div([
+    html.Div(style={'backgroundColor': colors['background']},
         className="app-header",
         children=[
             html.H1('Welcome to the Common Sennse Media Twitter Review Tool',
@@ -102,22 +102,22 @@ class Graph(dbb.Block):
     ), html.Div(
         children=html.Div([
             html.H2('How To Use This Tool:',   style={
-            'textAlign': 'center',
+    
             'color': colors['text']
         }),
-            html.H3('''
+            html.H4('''
                 First: Click the Dropdown Menus Below and Choose a Movie to Search Twitter Press TAB to Submit Movie Choice''',   style={
-            'textAlign': 'center',
+
             'color': colors['text']
         }),
-        html.H3('''
+        html.H4('''
             Second [OPTIONAL]: Input a unique word you wish to search for that was mentioned in tweets PRESS TAB to Submit''',   style={
-        'textAlign': 'center',
+
         'color': colors['text']
     }),
-    html.H3('''
+    html.H4('''
         Third: Click the Second Dropdown Menu and Choose a Word that You Wish to Search for PRESS TAB to Submit''',   style={
-    'textAlign': 'center',
+
     'color': colors['text']
 }),
         ])
