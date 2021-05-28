@@ -36,7 +36,7 @@ cur = con.cursor()
 
 # query the entire csv from postgres database
 query = f"""SELECT *
-            FROM evalalala
+            FROM eva_database
             """
 
 # return results as a dataframe
@@ -59,9 +59,17 @@ ex3['count_offensive'] = ex3['text'].str.count('offensive')
 ex3 = ex3.dropna()
 ex3 = ex3.reset_index()
 ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
+ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
+ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
+#ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
+ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
 
-
-ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist' ].sum())
+ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist','count_sexist', 'count_problematic',
+                                              'count_whitewashing',
+                                             'count_stigma',
+                                             'count_problematic','count_yellowface' ,
+                                                'count_blackface',
+                                              'count_anti-Semitic','count_discrimination'].sum())
 
 ex1 = ex1.reset_index()
 ex3['text'] = ex3['text'].astype(str)
@@ -77,7 +85,7 @@ class Graph(dbb.Block):
                 placeholder='Select specific movie to search'
             ),
 
-        #dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
+        dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
         #dcc.Input(id=self.register("input2"), type="text", placeholder="", debounce=True),
 
      dcc.Dropdown( id =self.register('dropdown2'),
@@ -118,7 +126,7 @@ class Graph(dbb.Block):
         'maxHeight': '300px'
         ,'overflowY': 'scroll'
     },
-   style_data_conditional=[
+    style_data_conditional=[
         {
             'if': {
                 'column_id': 'count_racist',
@@ -127,7 +135,55 @@ class Graph(dbb.Block):
             'backgroundColor': '#B20000',
             'color': 'white',
         }
-
+        ,{
+            'if': {
+                'column_id': 'count_problematic',
+                'filter_query': '{count_problematic} gt 10'
+            },
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        }
+        ,{
+            'if': {
+                'column_id': 'count_sexist',
+                'filter_query': '{count_sexist} gt 10'
+},
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        }
+        ,{
+            'if': {
+                'column_id': 'count_stigma',
+                'filter_query': '{count_stigma} gt 10'
+},
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        }
+        ,
+       {
+            'if': {
+                'column_id': 'count_discrimination',
+                'filter_query': '{count_discrimination} gt 10'
+},
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        },
+       {
+            'if': {
+                'column_id': 'count_yellowface',
+                'filter_query': '{count_yellowface} gt 10'
+},
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        },
+       {
+            'if': {
+                'column_id': 'count_blackface',
+                'filter_query': '{count_blackface} gt 10'
+},
+            'backgroundColor': '#B20000',
+            'color': 'white',
+        }
     ],
                 columns= [{"name": i, "id": i} for i in ex1.columns],
                 data=ex1.to_dict("records"),
@@ -145,14 +201,14 @@ class Graph(dbb.Block):
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
-            #self.input("input1", "value"),
+            self.input("input1", "value"),
             #self.input("input2", "value"),
             [self.input('dropdown', 'value')],
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
-        def update_graph( selected_dropdown_value , selected_dropdown_value2):
+        def update_graph(input1, selected_dropdown_value , selected_dropdown_value2):
 
-            #ex3['count '+'{}'.format(input1)] = ex3['text'].str.count(str(input1))
+            ex3['count '+'{}'.format(input1)] = ex3['text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
             # Creation of query method using parameters
             dif0= px.scatter(ex3, x='datetime', y = ex3['{}'.format(selected_dropdown_value2)],
