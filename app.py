@@ -64,12 +64,13 @@ ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
 #ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
 ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
 
-ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist','count_sexist', 'count_problematic',
-                                              'count_whitewashing',
+ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
+                                                'count_sexist',
+                                                'count_problematic',
                                              'count_stigma',
-                                             'count_problematic','count_yellowface' ,
-                                                'count_blackface',
-                                              'count_anti-Semitic','count_discrimination'].sum())
+                                             'count_yellowface' ,
+                                            'count_blackface',
+                                              'count_discrimination'].sum())
 
 ex1 = ex1.reset_index()
 ex3['text'] = ex3['text'].astype(str)
