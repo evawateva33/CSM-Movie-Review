@@ -31,6 +31,7 @@ con = psycopg2.connect(DATABASE_URL)
 cur = con.cursor()
 
 # query the entire csv from postgres database
+#change 'eva_database' to 'evalalala' if you are associated with CSM!!!!!!***
 query = f"""SELECT *
             FROM eva_database
             """
@@ -77,19 +78,29 @@ ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
 
 class Graph(dbb.Block):
     def layout(self):
-        return html.Div([
+        return
+      html.Div(
+        className="app-header",
+            children=[
+        html.Div('Welcome to the Common Sennse Media Twitter Review Tool /n IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R" and then Refresh the Page, REPEAT if needed', className="app-header--title")]),
+          html.Div(
+        children=html.Div([
+            html.H5('How To Use This Tool:'),
+            html.Div('''
+                First: Click the Dropdown Menus Below and Choose a Movie to Search Twitter Press TAB BUTTON to Submit Movie Choice/n
+                Second [OPTIONAL]: Input a unique word you wish to search for that was mentioned in tweets PRESS TAB to Submit /n
+                Third: Click the Second Dropdown Menu and Choose a Word that You Wish to Search for PRESS TAB to Submit 
+            ''')
+        ])
+    )
+        html.Div([
             dcc.Dropdown(
                 id=self.register('dropdown'),
                 options=self.data.options,
                 value="Breakfast at Tiffany's",
                 placeholder='Select specific movie to search'
             ),
-              html.Div(
-        className="app-header",
-        children=[
-            html.Div('Common Sennse Media Twitter Review', className="app-header--title")
-        ]
-    ),
+
 
         dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
         #dcc.Input(id=self.register("input2"), type="text", placeholder="", debounce=True),
