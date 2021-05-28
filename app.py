@@ -51,6 +51,8 @@ ex3['count_anti-Semitic'] = ex3['text'].str.count('anti-Semitic')
 ex3['count_discrimination'] = ex3['text'].str.count('discrimination')
 ex3['count_bigot'] = ex3['text'].str.count('bigot')
 ex3['count_offensive'] = ex3['text'].str.count('offensive')
+ex3['count_caricature'] = ex3['text'].str.count('caricature')
+
 
 ex3 = ex3.dropna()
 ex3 = ex3.reset_index()
@@ -72,6 +74,7 @@ ex1 = ex1.reset_index()
 ex3['text'] = ex3['text'].astype(str)
 ex3['text'] = ex3['text'].str.wrap(30)
 ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
+
 class Graph(dbb.Block):
     def layout(self):
         return html.Div([
@@ -81,6 +84,12 @@ class Graph(dbb.Block):
                 value="Breakfast at Tiffany's",
                 placeholder='Select specific movie to search'
             ),
+              html.Div(
+        className="app-header",
+        children=[
+            html.Div('Common Sennse Media Twitter Review', className="app-header--title")
+        ]
+    ),
 
         dcc.Input(id=self.register("input1"), type="text", placeholder="Input word to search",),
         #dcc.Input(id=self.register("input2"), type="text", placeholder="", debounce=True),
@@ -209,13 +218,13 @@ class Graph(dbb.Block):
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
 
             dif0= px.scatter(ex3, x='datetime', y = ex3['{}'.format(selected_dropdown_value2)],
-                            color='movie', title = 'All Movie Tweets Mentions with ' +'{}'.format(selected_dropdown_value2) )
+                            color='movie', title = 'All Movie Tweets Mentions with a ' +'{}'.format(selected_dropdown_value2) )
             figgs = px.line(ex33, x='datetime',y = ex33['count '+'{}'.format(input1)],
                         hover_data=["text"],
-                        title= '{}'.format(selected_dropdown_value)+ "Movie Tweet Mentions with"+'count '+'{}'.format(input1))
+                        title= '{}'.format(selected_dropdown_value)+ " Movie Tweet Mentions with a "+'count '+'{}'.format(input1))
             figgz = px.line(ex33, x='datetime', y = ex33['{}'.format(selected_dropdown_value2)],
                         hover_data=["text"] , color = 'score',
-                        title= '{}'.format(selected_dropdown_value)+ "Movie Tweet Mentions with"+'{}'.format(selected_dropdown_value2))
+                        title= '{}'.format(selected_dropdown_value)+ " Movie Tweet Mentions with a "+'{}'.format(selected_dropdown_value2))
             return   ex1.to_dict("records"), figgz, dif0, figgs
 
 app = dash.Dash(__name__)
@@ -237,7 +246,16 @@ app.layout = html.Div(
 
 for graph in graphs:
     graph.callbacks()
+cache = Cache(app.server, config={
+    # try 'filesystem' if you don't want to setup redis
+    'CACHE_TYPE': 'simple',
+    'CACHE_DEFAULT_TIMEOUT': 33
+})
+
+app.config.supress_callback_exceptions = True
+
+timeout = 33
 
 if __name__ == '__main__':
-    app.config.suppress_callback_exceptions = True
+
     app.run_server( debug=True)
