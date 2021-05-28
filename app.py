@@ -80,12 +80,13 @@ ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
 class Graph(dbb.Block):
     def layout(self):
         return
-      html.Div(
+
+              html.Div(
         className="app-header",
-            children=[
         html.Div('Welcome to the Common Sennse Media Twitter Review Tool /n IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R" and then Refresh the Page, REPEAT if needed',
-        className="app-header--title")]),
-         
+        className="app-header--title")
+        ]
+    ),
         html.Div([
             dcc.Dropdown(
                 id=self.register('dropdown'),
