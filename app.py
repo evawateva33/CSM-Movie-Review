@@ -26,7 +26,7 @@ import dash_table
 DATABASE_URL = os.environ['DATABASE_URL']
 
 colors = {
-    'background': '#7FFFDB',
+    'background': '#008000',
     'text': '#111111'
 }
 
@@ -93,16 +93,16 @@ class Graph(dbb.Block):
             'textAlign': 'center',
             'color': colors['text']
         }),
-        html.H3('IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R" and then Refresh the Page, REPEAT if needed',
+        html.H3('IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R", then Refresh the Page, and wait 10-20 Seconds, REPEAT if needed',
          className="app-header--title",   style={
         'textAlign': 'center',
-        'color': colors['text']
+        'color':  '#800000'
     })
         ]
     ), html.Div(
         children=html.Div([
             html.H2('How To Use This Tool:',   style={
-    
+
             'color': colors['text']
         }),
             html.H4('''
