@@ -25,6 +25,11 @@ import dash_table
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
+colors = {
+    'background': '#111111',
+    'text': '#7FDBFF'
+}
+
 con = psycopg2.connect(DATABASE_URL)
 
 #  create a new cursor
@@ -79,24 +84,50 @@ ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
 
 class Graph(dbb.Block):
     def layout(self):
-        return html.Div([
+        return html.Div([style={'backgroundColor': colors['background']},
+
+
     html.Div(
         className="app-header",
         children=[
-            html.H1('Welcome to the Common Sennse Media Twitter Review Tool  <br>  IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R" and then Refresh the Page, REPEAT if needed',
-             className="app-header--title")
+            html.H1('Welcome to the Common Sennse Media Twitter Review Tool',
+             className="app-header--title",   style={
+            'textAlign': 'center',
+            'color': colors['text']
+        }),
+        html.H3('IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R" and then Refresh the Page, REPEAT if needed',
+         className="app-header--title",   style={
+        'textAlign': 'center',
+        'color': colors['text']
+    })
         ]
-    )
-    , html.Div(
+    ), html.Div(
         children=html.Div([
-            html.H5('How To Use This Tool:'),
-            html.Div('''
-                First: Click the Dropdown Menus Below and Choose a Movie to Search Twitter Press TAB to Submit Movie Choice  <br>
-                Second [OPTIONAL]: Input a unique word you wish to search for that was mentioned in tweets PRESS TAB to Submit  <br>
-                Third: Click the Second Dropdown Menu and Choose a Word that You Wish to Search for PRESS TAB to Submit
-            ''')
+            html.H2('How To Use This Tool:',   style={
+            'textAlign': 'center',
+            'color': colors['text']
+        }),
+            html.H3('''
+                First: Click the Dropdown Menus Below and Choose a Movie to Search Twitter Press TAB to Submit Movie Choice''',   style={
+            'textAlign': 'center',
+            'color': colors['text']
+        }),
+        html.H3('''
+            Second [OPTIONAL]: Input a unique word you wish to search for that was mentioned in tweets PRESS TAB to Submit''',   style={
+        'textAlign': 'center',
+        'color': colors['text']
+    }),
+    html.H3('''
+        Third: Click the Second Dropdown Menu and Choose a Word that You Wish to Search for PRESS TAB to Submit''',   style={
+    'textAlign': 'center',
+    'color': colors['text']
+}),
         ])
     ),
+
+    #Second [OPTIONAL]: Input a unique word you wish to search for that was mentioned in tweets PRESS TAB to Submit  <br>
+    #Third: Click the Second Dropdown Menu and Choose a Word that You Wish to Search for PRESS TAB to Submit
+
     dcc.Dropdown(
                 id=self.register('dropdown'),
                 options=self.data.options,
