@@ -84,6 +84,15 @@ class Graph(dbb.Block):
         html.Div('Welcome to the Common Sennse Media Twitter Review Tool /n IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R" and then Refresh the Page, REPEAT if needed',
         className="app-header--title")
         ]
+    ), html.Div(
+        children=html.Div([
+            html.H5('How To Use This Tool:'),
+            html.Div('''
+                First: Click the Dropdown Menus Below and Choose a Movie to Search Twitter Press TAB BUTTON to Submit Movie Choice/n
+                Second [OPTIONAL]: Input a unique word you wish to search for that was mentioned in tweets PRESS TAB to Submit /n
+                Third: Click the Second Dropdown Menu and Choose a Word that You Wish to Search for PRESS TAB to Submit
+            ''')
+        ])
     ),
         html.Div([
             dcc.Dropdown(
