@@ -83,7 +83,8 @@ class Graph(dbb.Block):
       html.Div(
         className="app-header",
             children=[
-        html.Div('Welcome to the Common Sennse Media Twitter Review Tool /n IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R" and then Refresh the Page, REPEAT if needed', className="app-header--title")]),
+        html.Div('Welcome to the Common Sennse Media Twitter Review Tool /n IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R" and then Refresh the Page, REPEAT if needed',
+        className="app-header--title")]),
           html.Div(
         children=html.Div([
             html.H5('How To Use This Tool:'),
@@ -93,7 +94,7 @@ class Graph(dbb.Block):
                 Third: Click the Second Dropdown Menu and Choose a Word that You Wish to Search for PRESS TAB to Submit
             ''')
         ])
-    )
+    ),
         html.Div([
             dcc.Dropdown(
                 id=self.register('dropdown'),
