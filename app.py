@@ -246,16 +246,7 @@ app.layout = html.Div(
 
 for graph in graphs:
     graph.callbacks()
-cache = Cache(app.server, config={
-    # try 'filesystem' if you don't want to setup redis
-    'CACHE_TYPE': 'simple',
-    'CACHE_DEFAULT_TIMEOUT': 33
-})
-
-app.config.supress_callback_exceptions = True
-
-timeout = 33
 
 if __name__ == '__main__':
-
+    app.config.suppress_callback_exceptions = True
     app.run_server( debug=True)
