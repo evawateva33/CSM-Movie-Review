@@ -66,7 +66,7 @@ ex3['count_problematic'] = ex3['count_problematic'].astype(int)
 
 ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                                     'count_sexist', 'count_problematic',
-                                                    'count_stigma', 'count_stereotypes'].sum()
+                                                    'count_stigma', 'count_stereotypes'].sum())
 
 ex3['text'] = ex3['text'].astype(str)
 ex3['text'] = ex3['text'].str.wrap(30)
