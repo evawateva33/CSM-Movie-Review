@@ -84,10 +84,8 @@ ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
 
 class Graph(dbb.Block):
     def layout(self):
-        return html.Div([style={'backgroundColor': colors['background']},
-
-
-    html.Div(
+        return html.Div([
+    html.Div(style={'backgroundColor': colors['background']},
         className="app-header",
         children=[
             html.H1('Welcome to the Common Sennse Media Twitter Review Tool',
