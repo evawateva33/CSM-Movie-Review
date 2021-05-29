@@ -308,8 +308,9 @@ app.layout = html.Div(
     className='container'
 )
 
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-app.config.supress_callback_exceptions = True
+#app.config.supress_callback_exceptions = True
 
 for graph in graphs:
     graph.callbacks()
