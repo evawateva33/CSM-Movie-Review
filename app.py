@@ -78,6 +78,7 @@ ex3 = ex3.reset_index()
 ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
 ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
 ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
+#weid syntax error with values of count_stereotypes... gotta clean data more sadface
 #ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
 ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
 
@@ -135,9 +136,6 @@ class Graph(dbb.Block):
 }),
         ])
     ),
-
-    #Second [OPTIONAL]: Input a unique word you wish to search for that was mentioned in tweets PRESS TAB to Submit  <br>
-    #Third: Click the Second Dropdown Menu and Choose a Word that You Wish to Search for PRESS TAB to Submit
 
     dcc.Dropdown(
                 id=self.register('dropdown'),
@@ -309,6 +307,10 @@ app.layout = html.Div(
     for graph in graphs],
     className='container'
 )
+
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+
+app.config.supress_callback_exceptions = True
 
 for graph in graphs:
     graph.callbacks()
