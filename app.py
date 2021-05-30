@@ -112,7 +112,7 @@ class Graph(dbb.Block):
             'textAlign': 'center',
             'color': '#FFFFFF'
         }),
-        html.H5('IF PAGE DOES NOT LOAD: PRESS "COMMAND+SHIFT+R", Refresh the Page, and wait 10-20 Seconds, REPEAT if needed',
+        html.H5('IF GRAPHS BELOW DO NOT LOAD: PRESS "COMMAND+SHIFT+R", THEN Refresh the Page, THEN wait 10-20 Seconds, REPEAT if needed',
          className="app-header--title",   style={
         'textAlign': 'center',
         'color':  '#FFFFFF'
