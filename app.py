@@ -20,7 +20,7 @@ import pickle
 import os
 import psycopg2
 import datetime
-from flask_caching import Cache
+
 import dash_table
 
 
@@ -59,14 +59,7 @@ ex3 = pd.read_sql(query, con)
 
 ex3 = ex3.to_dict()
 
-cache = Cache(app.server, config={
-    'CACHE_TYPE': 'filesystem',
-    'CACHE_DIR': 'cache-directory'
-})
 
-TIMEOUT = 120
-
-@cache.memoize(timeout=TIMEOUT)
 #convert to df
 ex3 = pd.DataFrame.from_dict(ex3)
 
