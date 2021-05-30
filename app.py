@@ -291,7 +291,7 @@ class Graph(dbb.Block):
                         title= '{}'.format(selected_dropdown_value)+ " Movie Tweet Mentions with a "+'{}'.format(selected_dropdown_value2))
             return   ex1.to_dict("records"), figgz, dif0, figgs
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, suppress_callback_exceptions=True)
 server = app.server
 fig_names = ex3.movie.unique()
 options=[{'label': x, 'value': x} for x in fig_names]
