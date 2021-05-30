@@ -322,14 +322,35 @@ class Graph(dbb.Block):
                             color='movie', title = '<b>All Movie Tweets Mentions with a ' +'{}'.format(selected_dropdown_value2) )
             figgs = px.line(ex33, x='datetime',y = ex33['count '+'{}'.format(input1)],
                         hover_data=["text"],
-                        title= '{}'.format(selected_dropdown_value)+ " Movie Tweet Mentions with a "+'count '+'{}'.format(input1))
+                        title= "<b>"+'{}'.format(selected_dropdown_value)+ " Movie Tweet Mentions with a "+'count '+'{}'.format(input1))
             figgz = px.line(ex33, x='datetime', y = ex33['{}'.format(selected_dropdown_value2)],
                         hover_data=["text"] , color = 'score',
-                        title= '{}'.format(selected_dropdown_value)+ " Movie Tweet Mentions with a "+'{}'.format(selected_dropdown_value2))
+                        title= "<b>"+'{}'.format(selected_dropdown_value)+ " Movie Tweet Mentions with a "+'{}'.format(selected_dropdown_value2))
+            dif0.update_layout(
+                title={
+                    'text': "Plot Title",
+                    'y':0.9,
+                    'x':0.5,
+                    'xanchor': 'center',
+                    'yanchor': 'top'})
+            figgs.update_layout(
+                title={
+                    'text': "Plot Title",
+                    'y':0.9,
+                    'x':0.5,
+                    'xanchor': 'center',
+                    'yanchor': 'top'})
+            figgz.update_layout(
+                title={
+                    'text': "Plot Title",
+                    'y':0.9,
+                    'x':0.5,
+                    'xanchor': 'center',
+                    'yanchor': 'top'})
             return   ex1.to_dict("records"), figgz, dif0, figgs
-
-app = dash.Dash(__name__, suppress_callback_exceptions=True)
 server = app.server
+app = dash.Dash(__name__, suppress_callback_exceptions=True, server=server)
+
 fig_names = ex3.movie.unique()
 options=[{'label': x, 'value': x} for x in fig_names]
 data = {
