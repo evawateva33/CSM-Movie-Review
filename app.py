@@ -64,7 +64,7 @@ cache = Cache(app.server, config={
     'CACHE_DIR': 'cache-directory'
 })
 
-TIMEOUT = 60
+TIMEOUT = 120
 
 @cache.memoize(timeout=TIMEOUT)
 #convert to df
