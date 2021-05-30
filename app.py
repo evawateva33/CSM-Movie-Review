@@ -108,7 +108,7 @@ class Graph(dbb.Block):
             'textAlign': 'center',
             'color': colors['text']
         }),
-        html.H3('IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R", then Refresh the Page, and wait 10-20 Seconds, REPEAT if needed',
+        html.H4('IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R", then Refresh the Page, and wait 10-20 Seconds, REPEAT if needed',
          className="app-header--title",   style={
         'textAlign': 'center',
         'color':  '#800000'
@@ -118,22 +118,22 @@ class Graph(dbb.Block):
         children=html.Div([
             html.H2('How To Use This Tool:',   style={
 
-            'color': colors['text']
+            'color': '#808080'
         }),
             html.H4('''
                 First: Click the Dropdown Menus Below and Choose a Movie to Search Twitter Press TAB to Submit Movie Choice''',   style={
 
-            'color': colors['text']
+            'color': '#808080'
         }),
         html.H4('''
             Second [OPTIONAL]: Input a unique word you wish to search for that was mentioned in tweets PRESS TAB to Submit''',   style={
 
-        'color': colors['text']
+        'color': '#808080'
     }),
     html.H4('''
         Third: Click the Second Dropdown Menu and Choose a Word that You Wish to Search for PRESS TAB to Submit''',   style={
 
-    'color': colors['text']
+    'color': '#808080'
 }),
         ])
     ),
