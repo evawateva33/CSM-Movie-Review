@@ -283,7 +283,7 @@ class Graph(dbb.Block):
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
 
             dif0= px.scatter(ex3, x='datetime', y = ex3['{}'.format(selected_dropdown_value2)],
-                            color='movie', title = 'All Movie Tweets Mentions with a ' +'{}'.format(selected_dropdown_value2) )
+                            color='movie', title = '<b>All Movie Tweets Mentions with a ' +'{}'.format(selected_dropdown_value2) )
             figgs = px.line(ex33, x='datetime',y = ex33['count '+'{}'.format(input1)],
                         hover_data=["text"],
                         title= '{}'.format(selected_dropdown_value)+ " Movie Tweet Mentions with a "+'count '+'{}'.format(input1))
