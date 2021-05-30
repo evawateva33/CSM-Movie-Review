@@ -112,7 +112,7 @@ class Graph(dbb.Block):
             'textAlign': 'center',
             'color': '#FFFFFF'
         }),
-        html.H4('IF PAGE DOES NOT LOAD: PRESS "COMMAND+SHIFT+R", Refresh the Page, and wait 10-20 Seconds, REPEAT if needed',
+        html.H5('IF PAGE DOES NOT LOAD: PRESS "COMMAND+SHIFT+R", Refresh the Page, and wait 10-20 Seconds, REPEAT if needed',
          className="app-header--title",   style={
         'textAlign': 'center',
         'color':  '#FFFFFF'
@@ -120,8 +120,8 @@ class Graph(dbb.Block):
         ]
     ), html.Div(
         children=html.Div([
-            html.H2('How To Use This Tool:',   style={
-
+            html.H3('How To Use This Tool:',   style={
+            'textAlign': 'center',
             'color': '#808080'
         }),
             html.H4('''
