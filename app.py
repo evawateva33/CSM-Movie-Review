@@ -106,7 +106,7 @@ class Graph(dbb.Block):
             html.H1('Welcome to the Common Sennse Media Twitter Review Tool',
              className="app-header--title",   style={
             'textAlign': 'center',
-            'color': colors['text']
+            'color': '#FFFFFF'
         }),
         html.H4('IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R", then Refresh the Page, and wait 10-20 Seconds, REPEAT if needed',
          className="app-header--title",   style={
