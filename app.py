@@ -90,7 +90,11 @@ ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                              'count_yellowface' ,
                                             'count_blackface',
                                               'count_discrimination',
-                                              'count_caricature'].sum())
+                                              'count_caricature',
+                                              'count_offsensive',
+                                              'count_bigot',
+                                              'count_bias',
+                                              'count_anti-Semitic'].sum())
 
 ex1 = ex1.reset_index()
 ex3['text'] = ex3['text'].astype(str)
@@ -108,10 +112,10 @@ class Graph(dbb.Block):
             'textAlign': 'center',
             'color': '#FFFFFF'
         }),
-        html.H4('IF PAGE DOES NOT LOAD, PRESS "COMMAND+SHIFT+R", then Refresh the Page, and wait 10-20 Seconds, REPEAT if needed',
+        html.H4('IF PAGE DOES NOT LOAD: PRESS "COMMAND+SHIFT+R", Refresh the Page, and wait 10-20 Seconds, REPEAT if needed',
          className="app-header--title",   style={
         'textAlign': 'center',
-        'color':  '#800000'
+        'color':  '#FFFFFF'
     })
         ]
     ), html.Div(
@@ -253,7 +257,39 @@ class Graph(dbb.Block):
   },
               'backgroundColor': '#B20000',
               'color': 'white',
-          }
+          },
+           {
+                'if': {
+                    'column_id': 'count_bias',
+                    'filter_query': '{count_bias} gt 10'
+    },
+                'backgroundColor': '#B20000',
+                'color': 'white',
+            },
+            {
+                 'if': {
+                     'column_id': 'count_bigot',
+                     'filter_query': '{count_bigot} gt 10'
+     },
+                 'backgroundColor': '#B20000',
+                 'color': 'white',
+             },
+                 {
+                      'if': {
+                          'column_id': 'count_offensive',
+                          'filter_query': '{count_offensive} gt 10'
+          },
+                      'backgroundColor': '#B20000',
+                      'color': 'white',
+                  },
+                  {
+                       'if': {
+                           'column_id': 'count_anti-Semitic',
+                           'filter_query': '{count_anti-Semitic} gt 10'
+           },
+                       'backgroundColor': '#B20000',
+                       'color': 'white',
+                   }
 
     ],
                 columns= [{"name": i, "id": i} for i in ex1.columns],
