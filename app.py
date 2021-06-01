@@ -78,7 +78,7 @@ ex2['count_anti-Semitic'] = ex2['text'].str.count('anti-Semitic')
 ex2['count_discrimination'] = ex2['text'].str.count('discrimination')
 ex2['count_bigot'] = ex2['text'].str.count('bigot')
 ex2['count_offensive'] = ex2['text'].str.count('offensive')
-ex2['count_stereotypes'] = ex2['text'].str.count('stereotypes')
+ex2['count_sterotypes'] = ex2['text'].str.count('stereotypes')
 
 
 
@@ -91,7 +91,7 @@ ex3['count_discrimination'] = ex3['text'].str.count('discrimination')
 ex3['count_bigot'] = ex3['text'].str.count('bigot')
 ex3['count_offensive'] = ex3['text'].str.count('offensive')
 ex3['count_caricature'] = ex3['text'].str.count('caricature')
-ex3['count_stereotypes'] = ex3['text'].str.count('stereotypes')
+#ex3['count_sterotypes'] = ex3['text'].str.count('stereotypes')
 
 ex3 = ex3.append(ex2, ignore_index=True)
 
