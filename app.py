@@ -63,12 +63,12 @@ ex3['count_stereotypes'] = ex3['text'].str.count('stereotype')
 ex3['count_caricature'] = ex3['text'].str.count('caricature')
 ex3 = ex3.dropna()
 ex3 = ex3.reset_index()
-ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
-ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
-ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
+ex3['count_racist'] = ex3['text'].str.count('racist')
+ex3['count_sexist'] = ex3['text'].str.count('sexist')
+ex3['count_stigma'] = ex3['text'].str.count('stigma')
 #weid syntax error with values of count_stereotypes... gotta clean data more sadface
-ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
-ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
+ex3['count_stereotypes'] = ex3['text'].str.count('stereotype')
+ex3['count_problematic'] = ex3['text'].str.count('problematics')
 fig_names = ex3.movie.unique()
 ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                                 'count_sexist',
