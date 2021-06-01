@@ -59,7 +59,7 @@ ex3 = ex3.to_dict()
 ex3 = pd.DataFrame.from_dict(ex3)
 
 
-ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
+#ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
 ex3['count_yellowface'] = ex3['text'].str.count('yellowface')
 ex3['count_blackface'] = ex3['text'].str.count('blackface')
 ex3['count_bias'] = ex3['text'].str.count('bias')
