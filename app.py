@@ -47,7 +47,7 @@ ex3 = ex3.to_dict()
 #convert to df
 ex3 = pd.DataFrame.from_dict(ex3)
 
-ex3= ex3.rename(columns='count_yelloface':'count_yellowface')
+ex3= ex3.rename(columns={'count_yelloface':'count_yellowface'})
 #
 # ex3['datetime'] = ex3['datetime'].astype(str)
 # ex3['text'] = ex3['text'].astype(str)
