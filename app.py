@@ -349,7 +349,7 @@ class Graph(dbb.Block):
                     'yanchor': 'top'})
             return   ex1.to_dict("records"), figgz, dif0, figgs
 server = app.server
-app = dash.Dash(__name__, suppress_callback_exceptions=True, server=server)
+app = dash.Dash(__name__, suppress_callback_exceptions=True)
 
 fig_names = ex3.movie.unique()
 options=[{'label': x, 'value': x} for x in fig_names]
