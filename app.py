@@ -50,7 +50,7 @@ cur = con.cursor()
 # query the entire csv from postgres database
 #change 'eva_database' to 'evalalala' if you are associated with CSM!!!!!!***
 query = f"""SELECT *
-            FROM tweet_database
+            FROM eva_database
             """
 # return results as a dataframe
 ex3 = pd.read_sql(query, con)
@@ -59,8 +59,8 @@ ex3 = ex3.to_dict()
 ex3 = pd.DataFrame.from_dict(ex3)
 
 
-#ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')\
-ex3['text'] = ex3['text'].astype(str)
+
+ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
 ex3['count_yellowface'] = ex3['text'].str.count('yellowface')
 ex3['count_blackface'] = ex3['text'].str.count('blackface')
 ex3['count_bias'] = ex3['text'].str.count('bias')
@@ -69,9 +69,10 @@ ex3['count_discrimination'] = ex3['text'].str.count('discrimination')
 ex3['count_bigot'] = ex3['text'].str.count('bigot')
 ex3['count_offensive'] = ex3['text'].str.count('offensive')
 ex3['count_caricature'] = ex3['text'].str.count('caricature')
-#ex3['count_sterotypes'] = ex3['text'].str.count('stereotypes')
 
 
+ex3 = ex3.dropna()
+ex3 = ex3.reset_index()
 ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
 ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
 ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
