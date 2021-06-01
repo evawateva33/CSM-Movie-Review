@@ -91,7 +91,7 @@ ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                             'count_blackface',
                                               'count_discrimination',
                                               'count_caricature',
-                                              'count_offsensive',
+                                              'count_offensive',
                                               'count_bigot',
                                               'count_bias',
                                               'count_anti-Semitic'].sum())
