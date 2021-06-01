@@ -25,17 +25,6 @@ import dash_table
 
 
 
-# from flask_caching import Cache
-
-
-# cache = Cache(app.server, config={
-#     'CACHE_TYPE': 'filesystem',
-#     'CACHE_DIR': 'cache'
-# })
-# app.config.supress_callback_exceptions = True
-# @cache.memoize(timeout=timeout)
-# timeout = 20
-
 DATABASE_URL = os.environ['DATABASE_URL']
 
 colors = {
@@ -50,7 +39,7 @@ cur = con.cursor()
 # query the entire csv from postgres database
 #change 'eva_database' to 'evalalala' if you are associated with CSM!!!!!!***
 query = f"""SELECT *
-            FROM eva_database
+            FROM tweet_database
             """
 # return results as a dataframe
 ex3 = pd.read_sql(query, con)
@@ -79,7 +68,7 @@ ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
 #weid syntax error with values of count_stereotypes... gotta clean data more sadface
 #ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
 ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
-
+fig_names = ex3.movie.unique()
 ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                                 'count_sexist',
                                                 'count_problematic',
@@ -346,7 +335,7 @@ app = dash.Dash(__name__, suppress_callback_exceptions=True)
 app.config.suppress_callback_exceptions = True
 
 server = app.server
-fig_names = ex3.movie.unique()
+#fig_names = ex3.movie.unique()
 options=[{'label': x, 'value': x} for x in fig_names]
 data = {
     'options': options,
