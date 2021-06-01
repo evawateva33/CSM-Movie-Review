@@ -39,7 +39,7 @@ cur = con.cursor()
 # query the entire csv from postgres database
 #change 'eva_database' to 'evalalala' if you are associated with CSM!!!!!!***
 query = f"""SELECT *
-            FROM tweet_db
+            FROM eva_database
             """
 # return results as a dataframe
 ex3 = pd.read_sql(query, con)
@@ -47,29 +47,29 @@ ex3 = ex3.to_dict()
 #convert to df
 ex3 = pd.DataFrame.from_dict(ex3)
 
-ex3= ex3.rename(columns={'count_yelloface':'count_yellowface'})
+#ex3= ex3.rename(columns={'count_yelloface':'count_yellowface'})
 #
 # ex3['datetime'] = ex3['datetime'].astype(str)
 # ex3['text'] = ex3['text'].astype(str)
-# ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
-# ex3['count_yellowface'] = ex3['text'].str.count('yellowface')
-# ex3['count_blackface'] = ex3['text'].str.count('blackface')
-# ex3['count_bias'] = ex3['text'].str.count('bias')
-# ex3['count_anti-Semitic'] = ex3['text'].str.count('anti-Semitic')
-# ex3['count_discrimination'] = ex3['text'].str.count('discrimination')
-# ex3['count_bigot'] = ex3['text'].str.count('bigot')
-# ex3['count_offensive'] = ex3['text'].str.count('offensive')
-# ex3['count_caricature'] = ex3['text'].str.count('caricature')
-#
-#
-# ex3 = ex3.dropna()
-# ex3 = ex3.reset_index()
-# ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
-# ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
-# ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
-# #weid syntax error with values of count_stereotypes... gotta clean data more sadface
-# #ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
-# ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
+ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
+ex3['count_yellowface'] = ex3['text'].str.count('yellowface')
+ex3['count_blackface'] = ex3['text'].str.count('blackface')
+ex3['count_bias'] = ex3['text'].str.count('bias')
+ex3['count_anti-Semitic'] = ex3['text'].str.count('anti-Semitic')
+ex3['count_discrimination'] = ex3['text'].str.count('discrimination')
+ex3['count_bigot'] = ex3['text'].str.count('bigot')
+ex3['count_offensive'] = ex3['text'].str.count('offensive')
+ex3['count_stereotypes'] = ex3['text'].str.count('stereotype')
+
+ex3['count_caricature'] = ex3['text'].str.count('caricature')
+ex3 = ex3.dropna()
+ex3 = ex3.reset_index()
+ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
+ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
+ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
+#weid syntax error with values of count_stereotypes... gotta clean data more sadface
+ex3['count_stereotypes'] = ex3['count_stereotypes'].apply(pd.to_numeric)
+ex3['count_problematic'] = ex3['count_problematic'].apply(pd.to_numeric)
 fig_names = ex3.movie.unique()
 ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                                 'count_sexist',
@@ -77,6 +77,7 @@ ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                              'count_stigma',
                                              'count_yellowface' ,
                                             'count_blackface',
+                                            'count_stereotypes',
                                               'count_discrimination',
                                               'count_caricature',
                                               'count_offensive',
@@ -276,7 +277,16 @@ class Graph(dbb.Block):
            },
                        'backgroundColor': '#B20000',
                        'color': 'white',
-                   }
+                   },
+                     {
+                          'if': {
+                              'column_id': 'count_stereotypes',
+                              'filter_query': '{count_stereotypes} gt 10'
+              },
+                          'backgroundColor': '#B20000',
+                          'color': 'white',
+                      }
+
 
     ],
                 columns= [{"name": i, "id": i} for i in ex1.columns],
