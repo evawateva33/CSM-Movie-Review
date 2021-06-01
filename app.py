@@ -62,9 +62,12 @@ query2 = f"""SELECT *
             FROM evalalala
             """
 
-cur2 = con.cursor()
+con2 = psycopg2.connect(DATABASE_URL)
+
+#  create a new cursor
+cur2 = con2.cursor()
 # return results as a dataframe
-ex2 = pd.read_sql(query2, cur2)
+ex2 = pd.read_sql(query2, con2)
 ex2 = ex2.to_dict()
 #convert to df
 ex3 = pd.DataFrame.from_dict(ex2)
