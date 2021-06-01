@@ -46,9 +46,6 @@ ex3 = ex3.to_dict()
 #convert to df
 ex3 = pd.DataFrame.from_dict(ex3)
 
-#ex3= ex3.rename(columns={'count_yelloface':'count_yellowface'})
-#
-# ex3['datetime'] = ex3['datetime'].astype(str)
 
 ex3['text'] = ex3['count_racist'].astype(str)
 ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
@@ -344,9 +341,11 @@ class Graph(dbb.Block):
                     'yanchor': 'top'})
             return   ex1.to_dict("records"), figgz, dif0, figgs
 
-app = dash.Dash(__name__, suppress_callback_exceptions=True)
-app.config.suppress_callback_exceptions = True
+# app = dash.Dash(__name__, suppress_callback_exceptions=True)
+# app.config.suppress_callback_exceptions = True
 
+server = flask.Flask(__name__)
+app = dash.Dash(__name__, server=server)
 server = app.server
 #fig_names = ex3.movie.unique()
 options=[{'label': x, 'value': x} for x in fig_names]
