@@ -128,7 +128,6 @@ class Graph(dbb.Block):
     ), html.Div(
         children=html.Div([
             html.H3('How To Use This Tool:',   style={
-            'textAlign': 'center',
             'color': '#808080'
         }),
             html.H4('''
