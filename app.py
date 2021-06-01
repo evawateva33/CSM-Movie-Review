@@ -82,7 +82,7 @@ ex1 = pd.DataFrame(ex3.groupby(['movie'], sort=True)['count_racist',
                                               'count_offensive',
                                               'count_bigot',
                                               'count_bias',
-                                              'count_anti_Semitic'].sum())
+                                            ].sum())
 
 ex1 = ex1.reset_index()
 ex3['text'] = ex3['text'].astype(str)
@@ -153,7 +153,7 @@ class Graph(dbb.Block):
             {'label': 'count_bias', 'value':'count_bias'},
             {'label': 'count_bigot', 'value':'count_bigot'},
             {'label': 'count_discrimination', 'value':'count_discrimination'},
-            {'label': 'count_anti_Semitic', 'value':'count_anti_Semitic'},
+            # {'label': 'count_anti_Semitic', 'value':'count_anti_Semitic'},
             {'label': 'count_offensive', 'value':'count_offensive'},
             {'label': 'count_caricature', 'value':'count_caricature'},
 
@@ -269,14 +269,14 @@ class Graph(dbb.Block):
                       'backgroundColor': '#B20000',
                       'color': 'white',
                   },
-                  {
-                       'if': {
-                           'column_id': 'count_anti_Semitic',
-                           'filter_query': '{count_anti_Semitic} gt 10'
-           },
-                       'backgroundColor': '#B20000',
-                       'color': 'white',
-                   },
+           #        {
+           #             'if': {
+           #                 'column_id': 'count_anti_Semitic',
+           #                 'filter_query': '{count_anti_Semitic} gt 10'
+           # },
+           #             'backgroundColor': '#B20000',
+           #             'color': 'white',
+           #         },
                      {
                           'if': {
                               'column_id': 'count_stereotypes',
