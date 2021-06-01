@@ -50,37 +50,13 @@ cur = con.cursor()
 # query the entire csv from postgres database
 #change 'eva_database' to 'evalalala' if you are associated with CSM!!!!!!***
 query = f"""SELECT *
-            FROM eva_database
+            FROM tweet_database
             """
 # return results as a dataframe
 ex3 = pd.read_sql(query, con)
 ex3 = ex3.to_dict()
 #convert to df
 ex3 = pd.DataFrame.from_dict(ex3)
-
-query2 = f"""SELECT *
-            FROM evalalala
-            """
-
-con2 = psycopg2.connect(DATABASE_URL)
-
-#  create a new cursor
-cur2 = con2.cursor()
-# return results as a dataframe
-ex2 = pd.read_sql(query2, con2)
-ex2 = ex2.to_dict()
-#convert to df
-ex2 = pd.DataFrame.from_dict(ex2)
-ex2['datetime'] =  pd.to_datetime(ex2['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
-ex2['count_yellowface'] = ex2['text'].str.count('yellowface')
-ex2['count_blackface'] = ex2['text'].str.count('blackface')
-ex2['count_bias'] = ex2['text'].str.count('bias')
-ex2['count_anti-Semitic'] = ex2['text'].str.count('anti-Semitic')
-ex2['count_discrimination'] = ex2['text'].str.count('discrimination')
-ex2['count_bigot'] = ex2['text'].str.count('bigot')
-ex2['count_offensive'] = ex2['text'].str.count('offensive')
-ex2['count_sterotypes'] = ex2['text'].str.count('stereotypes')
-ex2['count_caricature'] = ex2['text'].str.count('caricature')
 
 
 ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
@@ -94,7 +70,6 @@ ex3['count_offensive'] = ex3['text'].str.count('offensive')
 ex3['count_caricature'] = ex3['text'].str.count('caricature')
 #ex3['count_sterotypes'] = ex3['text'].str.count('stereotypes')
 
-ex3 = ex3.append(ex2, ignore_index=True)
 
 ex3 = ex3.dropna()
 ex3 = ex3.reset_index()
