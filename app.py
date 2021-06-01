@@ -71,6 +71,7 @@ ex2 = pd.read_sql(query2, con2)
 ex2 = ex2.to_dict()
 #convert to df
 ex2 = pd.DataFrame.from_dict(ex2)
+ex2['datetime'] =  pd.to_datetime(ex2['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
 ex2['count_yellowface'] = ex2['text'].str.count('yellowface')
 ex2['count_blackface'] = ex2['text'].str.count('blackface')
 ex2['count_bias'] = ex2['text'].str.count('bias')
@@ -79,7 +80,7 @@ ex2['count_discrimination'] = ex2['text'].str.count('discrimination')
 ex2['count_bigot'] = ex2['text'].str.count('bigot')
 ex2['count_offensive'] = ex2['text'].str.count('offensive')
 ex2['count_sterotypes'] = ex2['text'].str.count('stereotypes')
-
+ex2['count_caricature'] = ex2['text'].str.count('caricature')
 
 
 ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
