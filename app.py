@@ -72,8 +72,6 @@ ex3 = pd.DataFrame.from_dict(ex3)
 #ex3['count_sterotypes'] = ex3['text'].str.count('stereotypes')
 
 
-ex3 = ex3.dropna()
-ex3 = ex3.reset_index()
 #
 # ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
 # ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
