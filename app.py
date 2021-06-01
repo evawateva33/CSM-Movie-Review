@@ -70,7 +70,15 @@ cur2 = con2.cursor()
 ex2 = pd.read_sql(query2, con2)
 ex2 = ex2.to_dict()
 #convert to df
-ex3 = pd.DataFrame.from_dict(ex2)
+ex2 = pd.DataFrame.from_dict(ex2)
+ex2['count_yellowface'] = ex2['text'].str.count('yellowface')
+ex2['count_blackface'] = ex2['text'].str.count('blackface')
+ex2['count_bias'] = ex2['text'].str.count('bias')
+ex2['count_anti-Semitic'] = ex2['text'].str.count('anti-Semitic')
+ex2['count_discrimination'] = ex2['text'].str.count('discrimination')
+ex2['count_bigot'] = ex2['text'].str.count('bigot')
+ex2['count_offensive'] = ex2['text'].str.count('offensive')
+
 
 ex3 = ex3.append(ex2)
 
