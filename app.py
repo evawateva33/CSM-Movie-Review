@@ -78,9 +78,8 @@ ex2['count_anti-Semitic'] = ex2['text'].str.count('anti-Semitic')
 ex2['count_discrimination'] = ex2['text'].str.count('discrimination')
 ex2['count_bigot'] = ex2['text'].str.count('bigot')
 ex2['count_offensive'] = ex2['text'].str.count('offensive')
+ex2['count_stereotypes'] = ex2['text'].str.count('stereotypes')
 
-
-ex3 = ex3.append(ex2, ignore_index=True)
 
 
 ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
@@ -92,10 +91,13 @@ ex3['count_discrimination'] = ex3['text'].str.count('discrimination')
 ex3['count_bigot'] = ex3['text'].str.count('bigot')
 ex3['count_offensive'] = ex3['text'].str.count('offensive')
 ex3['count_caricature'] = ex3['text'].str.count('caricature')
+ex3['count_stereotypes'] = ex3['text'].str.count('stereotypes')
 
+ex3 = ex3.append(ex2, ignore_index=True)
 
 ex3 = ex3.dropna()
 ex3 = ex3.reset_index()
+
 ex3['count_racist'] = ex3['count_racist'].apply(pd.to_numeric)
 ex3['count_sexist'] = ex3['count_sexist'].apply(pd.to_numeric)
 ex3['count_stigma'] = ex3['count_stigma'].apply(pd.to_numeric)
