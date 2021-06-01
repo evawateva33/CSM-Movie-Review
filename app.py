@@ -47,21 +47,28 @@ con = psycopg2.connect(DATABASE_URL)
 
 #  create a new cursor
 cur = con.cursor()
-
 # query the entire csv from postgres database
 #change 'eva_database' to 'evalalala' if you are associated with CSM!!!!!!***
 query = f"""SELECT *
             FROM eva_database
             """
-
 # return results as a dataframe
 ex3 = pd.read_sql(query, con)
-
 ex3 = ex3.to_dict()
-
-
 #convert to df
 ex3 = pd.DataFrame.from_dict(ex3)
+
+query2 = f"""SELECT *
+            FROM evalalala
+            """
+# return results as a dataframe
+ex2 = pd.read_sql(query2, con)
+ex2 = ex2.to_dict()
+#convert to df
+ex2 = pd.DataFrame.from_dict(ex2)
+
+ex3 = ex3.append(ex2)
+
 
 ex3['datetime'] =  pd.to_datetime(ex3['datetime'].str[:18], errors = 'coerce',  format='%Y-%m-%d %H:%M:%S')
 ex3['count_yellowface'] = ex3['text'].str.count('yellowface')
@@ -348,9 +355,9 @@ class Graph(dbb.Block):
                     'xanchor': 'center',
                     'yanchor': 'top'})
             return   ex1.to_dict("records"), figgz, dif0, figgs
-server = app.server
-app = dash.Dash(__name__, suppress_callback_exceptions=True)
 
+app = dash.Dash(__name__, suppress_callback_exceptions=True)
+server = app.server
 fig_names = ex3.movie.unique()
 options=[{'label': x, 'value': x} for x in fig_names]
 data = {
