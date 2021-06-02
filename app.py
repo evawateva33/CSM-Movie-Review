@@ -60,13 +60,10 @@ ex3['count_discrimination'] = ex3['text'].str.count('discrimination')
 ex3['count_bigot'] = ex3['text'].str.count('bigot')
 ex3['count_offensive'] = ex3['text'].str.count('offensive')
 ex3['count_stereotypes'] = ex3['text'].str.count('stereotype')
-
 ex3['count_caricature'] = ex3['text'].str.count('caricature')
-
 ex3['count_racist'] = ex3['text'].str.count('racist')
 ex3['count_sexist'] = ex3['text'].str.count('sexist')
 ex3['count_stigma'] = ex3['text'].str.count('stigma')
-#weid syntax error with values of count_stereotypes... gotta clean data more sadface
 ex3['count_stereotypes'] = ex3['text'].str.count('stereotype')
 ex3['count_problematic'] = ex3['text'].str.count('problematic')
 ex3 = ex3.dropna()
@@ -347,7 +344,7 @@ class Graph(dbb.Block):
             return   ex1.to_dict("records"), figgz, dif0, figgs
 
 # app = dash.Dash(__name__, suppress_callback_exceptions=True)
-app.config.suppress_callback_exceptions = True
+
 
 
 from flask import Flask
@@ -373,7 +370,7 @@ app.layout = html.Div(
     className='container'
 )
 
-
+app.config.suppress_callback_exceptions = True
 
 for graph in graphs:
     graph.callbacks()
