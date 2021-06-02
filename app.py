@@ -309,18 +309,20 @@ class Graph(dbb.Block):
      [self.input(component_id='dropdown2', component_property= 'value')]
         )
         def update_graph(input1, selected_dropdown_value , selected_dropdown_value2):
-
+            stringy2 = str(selected_dropdown_value2)
+            stringy1 = str(selected_dropdown_value)
+            inputy = str(input1)
             ex3['count '+'{}'.format(input1)] = ex3['text'].str.count(str(input1))
             ex33 = ex3[ex3['movie'] == str(selected_dropdown_value)]
 
             dif0= px.scatter(ex3, x='datetime', y = ex3['{}'.format(selected_dropdown_value2)],
                             color='movie', title = '<b>All Movie Tweets Mentions with a ' +'{}'.format(selected_dropdown_value2) )
-            figgs = px.line(ex33, x='datetime',y = ex33['count '+'{}'.format(input1)],
+            figgs = px.line(ex33, x='datetime',y = ex33['count '+'{}'.format(inputy)],
                         hover_data=["text"],
-                        title= "<b>"+'{}'.format(selected_dropdown_value)+ " Movie Tweet Mentions with a "+'count '+'{}'.format(input1))
-            figgz = px.line(ex33, x='datetime', y = ex33['{}'.format(selected_dropdown_value2)],
+                        title= "<b>"+'{}'.format(stringy1)+ " Movie Tweet Mentions with a "+'count '+'{}'.format(inputy))
+            figgz = px.line(ex33, x='datetime', y = ex33['{}'.format(stringy2)],
                         hover_data=["text"] , color = 'score',
-                        title= "<b>"+'{}'.format(selected_dropdown_value)+ " Movie Tweet Mentions with a "+'{}'.format(selected_dropdown_value2))
+                        title= "<b>"+'{}'.format(stringy1)+ " Movie Tweet Mentions with a "+'{}'.format(stringy2))
             dif0.update_layout(
                 title={
                     'y':0.9,
