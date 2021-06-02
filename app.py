@@ -22,12 +22,10 @@ import psycopg2
 import datetime
 
 import dash_table
-import dash
+
 from flask import Flask
 import logging
-server = Flask(__name__)
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
+
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -351,6 +349,10 @@ class Graph(dbb.Block):
 # app = dash.Dash(__name__, suppress_callback_exceptions=True)
 # app.config.suppress_callback_exceptions = True
 
+
+
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 server = flask.Flask(__name__)
 app = dash.Dash(__name__, server=server)
 server = app.server
@@ -380,4 +382,4 @@ for graph in graphs:
     graph.callbacks()
 
 if __name__ == '__main__':
-    app.run_server( debug=True)
+    app.run_server(debug=False,dev_tools_ui=False,dev_tools_props_check=False)
