@@ -369,7 +369,7 @@ app.layout = html.Div(
     [html.Div(graph.layout, className='six columns')
     for graph in graphs],
     className='container'
-)import dash
+)
 from flask import Flask
 import logging
 server = Flask(__name__)
