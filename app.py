@@ -22,7 +22,12 @@ import psycopg2
 import datetime
 
 import dash_table
-
+import dash
+from flask import Flask
+import logging
+server = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -362,7 +367,12 @@ app.layout = html.Div(
     [html.Div(graph.layout, className='six columns')
     for graph in graphs],
     className='container'
-)
+)import dash
+from flask import Flask
+import logging
+server = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 
 
