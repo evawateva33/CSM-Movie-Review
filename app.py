@@ -136,7 +136,7 @@ class Graph(dbb.Block):
             ),
 
 
-        dcc.Input(id=self.register("input1"),value = 'appropriation',  type="text", placeholder="Input word to search",),
+        dcc.Input(id=self.register("input1"),value = 'bad',  type="text", placeholder="Input word to search",),
         #dcc.Input(id=self.register("input2"), type="text", placeholder="", debounce=True),
 
      dcc.Dropdown( id =self.register('dropdown2'),
