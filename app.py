@@ -347,9 +347,11 @@ class Graph(dbb.Block):
             return   ex1.to_dict("records"), figgz, dif0, figgs
 
 # app = dash.Dash(__name__, suppress_callback_exceptions=True)
-# app.config.suppress_callback_exceptions = True
+app.config.suppress_callback_exceptions = True
 
 
+from flask import Flask
+import logging
 
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
@@ -370,11 +372,6 @@ app.layout = html.Div(
     for graph in graphs],
     className='container'
 )
-from flask import Flask
-import logging
-server = Flask(__name__)
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
 
 
 
