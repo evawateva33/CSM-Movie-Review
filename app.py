@@ -303,7 +303,7 @@ class Graph(dbb.Block):
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure')],
-            self.input("input1", "value"),
+            [self.input("input1", "value")],
             #self.input("input2", "value"),
             [self.input('dropdown', 'value')],
      [self.input(component_id='dropdown2', component_property= 'value')]
