@@ -347,7 +347,11 @@ class Graph(dbb.Block):
 
 
 
+from flask import Flask
+import logging
 
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 server = flask.Flask(__name__)
 app = dash.Dash(__name__, server=server)
 server = app.server
@@ -360,7 +364,7 @@ data = {
 n_graphs =1
 graphs = [Graph(app, data) for _ in range(n_graphs)]
 
-app.layout = html.Div(
+app.layout = html.Div(children= 
     [html.Div(graph.layout, className='six columns')
     for graph in graphs],
     className='container'
