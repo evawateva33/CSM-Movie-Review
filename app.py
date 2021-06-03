@@ -291,9 +291,9 @@ class Graph(dbb.Block):
                 data=ex1.to_dict("records"),
                                     ),
 
+        dcc.Graph(id=self.register('graph2')),
         dcc.Graph(id=self.register('graph')),
-        dcc.Graph(id=self.register('graph')),
-        dcc.Graph(id=self.register('graph'))
+        dcc.Graph(id=self.register('graph3'))
 
         ], style={'width': '500'})
 
@@ -301,8 +301,8 @@ class Graph(dbb.Block):
         @self.app.callback(
             self.output('table', 'data'),
             self.output('graph', 'figure'),
-            self.output('graph', 'figure'),
-            self.output('graph', 'figure'),
+            self.output('graph2', 'figure'),
+            self.output('graph3', 'figure'),
             self.input("input1", "value"),
             #self.input("input2", "value"),
             [self.input('dropdown', 'value')],
