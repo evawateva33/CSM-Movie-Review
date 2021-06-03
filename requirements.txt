@@ -25,5 +25,5 @@ pandas-datareader==0.6.0
 plotly==2.5.1
 
 requests==2.18.4
-urllib3==1.22
+urllib3==1.26.5
 Werkzeug==0.14.1
