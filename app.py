@@ -318,7 +318,7 @@ class Graph(dbb.Block):
             dif0= px.scatter(ex3, x='datetime', y = ex3['{}'.format(stringy2)],
                             color='movie', title = '<b>All Movie Tweets Mentions with a ' +'{}'.format(stringy2) )
             figgs = px.line(ex33, x='datetime',y = ex33['count '+'{}'.format(inputy)],
-                        hover_data=["text"],
+                        hover_data=["text"],color='score',
                         title= "<b>"+'{}'.format(stringy1)+ " Movie Tweet Mentions with a "+'count '+'{}'.format(inputy))
             figgz = px.line(ex33, x='datetime', y = ex33['{}'.format(stringy2)],
                         hover_data=["text"] , color = 'score',
