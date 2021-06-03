@@ -299,10 +299,10 @@ class Graph(dbb.Block):
 
     def callbacks(self):
         @self.app.callback(
-            self.output('table', 'data'),
+            [self.output('table', 'data'),
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
-            self.output('graph3', 'figure'),
+            self.output('graph3', 'figure')],
             self.input("input1", "value"),
             #self.input("input2", "value"),
             [self.input('dropdown', 'value')],
@@ -364,7 +364,7 @@ data = {
 n_graphs =1
 graphs = [Graph(app, data) for _ in range(n_graphs)]
 
-app.layout = html.Div(children= 
+app.layout = html.Div(children=
     [html.Div(graph.layout, className='six columns')
     for graph in graphs],
     className='container'
