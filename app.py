@@ -8,7 +8,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_building_blocks as dbb
 import plotly.express as px
-
+import base64
 import pickle
 import pandas as pd  #Pandas for data pre-processing
 import joblib
@@ -25,6 +25,8 @@ import dash_table
 
 from flask import Flask
 import logging
+image_filename = 'Screen Shot 2021-06-04 at 11.36.51 AM.png' # replace with your own image
+encoded_image = base64.b64encode(open(image_filename, 'rb').read())
 
 
 
@@ -91,6 +93,8 @@ ex3['text'] = ex3['text'].apply(lambda x: x.replace('\n', '<br>'))
 class Graph(dbb.Block):
     def layout(self):
         return html.Div([
+         html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()), style={'height':'20%', 'width':'20%', 'position': 'relative',
+                                                                                           'text-align': 'right'}),
     html.Div(style={'backgroundColor': colors['background']},
         className="app-header",
         children=[
@@ -303,10 +307,10 @@ class Graph(dbb.Block):
             self.output('graph', 'figure'),
             self.output('graph2', 'figure'),
             self.output('graph3', 'figure'),
-            [self.input("input1", "value"),
+            [self.input("input1", "value")],
 
-            self.input('dropdown', 'value'),
-     self.input(component_id='dropdown2', component_property= 'value')]
+            [self.input('dropdown', 'value')],
+     [self.input(component_id='dropdown2', component_property= 'value')]
         )
         def update_graph(input1, selected_dropdown_value , selected_dropdown_value2):
             stringy2 = str(selected_dropdown_value2)
